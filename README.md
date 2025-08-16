@@ -14,19 +14,34 @@
 它不仅是**初学者的全景地图**，也是**有经验从业者查漏补缺、触类旁通**的路径参考。  
 需要说明的是，在真实项目中，每个人可能会扮演多个角色，也可能一个角色由多人协作。了解不同角色的责任侧重点，有助于项目成员更好地定位自己，理解如何高效沟通、协作和成长。
 
-
 ## 🗺️ 城市建设蓝图 (课程目录)
 
-建议按照如下顺序跟随“数字城市”成长之路学习：
+> 建议第一步先点击“城市概览”，了解数字城市的全貌，再按顺序探索每个岗位。
 
-1.  **[城市概览](https://leadingthink.github.io/digital-city-tutorial/src/index.html)** - 欢迎来到数字奇迹之城的建设现场
-2.  **[产品经理 & 项目经理](https://leadingthink.github.io/digital-city-tutorial/src/01_product_project_manager.html)** - 城市的航海家与总工程师
-3.  **[软件架构师](https://leadingthink.github.io/digital-city-tutorial/src/02_software_architect.html)** - 城市的首席规划师
-4.  **[UI/UX设计师](https://leadingthink.github.io/digital-city-tutorial/src/03_ui_ux_designer.html)** - 城市的建筑师与室内设计师
-5.  **[Web开发者](https://leadingthink.github.io/digital-city-tutorial/src/04_web_developer.html)** - 城市里顶级餐厅的后厨与大堂经理
-6.  **[软件测试工程师](https://leadingthink.github.io/digital-city-tutorial/src/05_software_tester.html)** - 城市的首席质检官与安全巡查员
-7.  **[运维/DevOps工程师](https://leadingthink.github.io/digital-city-tutorial/src/06_devops_engineer.html)** - 城市自动化建设局与应急响应中心
-8.  **[算法工程师](https://leadingthink.github.io/digital-city-tutorial/src/07_algorithm_engineer.html)** - 城市大数据分析与未来预测中心
+### 1. 必看入口
+
+- **[城市概览](https://leadingthink.github.io/digital-city-tutorial/src/index.html)**  
+  欢迎来到数字奇迹之城的建设现场
+
+---
+
+### 2. 城市岗位地图
+
+- **[产品经理 & 项目经理](https://leadingthink.github.io/digital-city-tutorial/src/01_product_project_manager.html)**  
+  城市的航海家与总工程师
+- **[软件架构师](https://leadingthink.github.io/digital-city-tutorial/src/02_software_architect.html)**  
+  城市的首席规划师
+- **[UI/UX设计师](https://leadingthink.github.io/digital-city-tutorial/src/03_ui_ux_designer.html)**  
+  城市的建筑师与室内设计师
+- **[Web开发者](https://leadingthink.github.io/digital-city-tutorial/src/04_web_developer.html)**  
+  城市里顶级餐厅的后厨与大堂经理
+- **[软件测试工程师](https://leadingthink.github.io/digital-city-tutorial/src/05_software_tester.html)**  
+  城市的首席质检官与安全巡查员
+- **[运维/DevOps工程师](https://leadingthink.github.io/digital-city-tutorial/src/06_devops_engineer.html)**  
+  城市自动化建设局与应急响应中心
+- **[算法工程师](https://leadingthink.github.io/digital-city-tutorial/src/07_algorithm_engineer.html)**  
+  城市大数据分析与未来预测中心
+
 
 ## 🚀 如何使用
 
