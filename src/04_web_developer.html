@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代软件开发核心岗位培训系列 - Web开发篇</title>
+<style>
+    :root {
+        --shared-color: #6c757d; /* Shared Gray */
+        --frontend-color: #28a745; /* Frontend Green */
+        --backend-color: #dc3545; /* Backend Red */
+        --bg-color: #f8f9fa;
+        --text-color: #343a40;
+        --card-bg: #ffffff;
+        --border-color: #e9ecef;
+    }
+    body {
+        font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+        line-height: 1.9;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    header {
+        background: linear-gradient(135deg, var(--frontend-color), var(--backend-color));
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    header h1 { margin: 0; font-size: 2.8rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+    header p { margin: 10px 0 0; font-size: 1.2rem; opacity: 0.9; }
+    main { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+    .part-title {
+        text-align: center;
+        margin: 60px 0 30px;
+        font-size: 2.2rem;
+        color: #495057;
+        font-weight: 300;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 15px;
+    }
+    details {
+        background: var(--card-bg);
+        border-radius: 10px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid var(--border-color);
+        transition: box-shadow 0.3s ease;
+    }
+    details[open] { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+    summary {
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 25px;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    summary.shared-chapter { color: var(--shared-color); }
+    summary.frontend-chapter { color: var(--frontend-color); }
+    summary.backend-chapter { color: var(--backend-color); }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '＋'; font-size: 2.2rem; transition: transform 0.3s; color: #adb5bd; }
+    details[open] > summary::after { transform: rotate(45deg); }
+    .content-wrapper { padding: 0 30px 30px; border-top: 1px solid var(--border-color); }
+    h3 { font-size: 1.3rem; margin-top: 35px; border-bottom: 2px solid #f1f3f5; padding-bottom: 10px; }
+    h4 { font-size: 1.1rem; margin-top: 25px; color: #495057; }
+    .box { padding: 20px; margin: 20px 0; border-left-width: 5px; border-left-style: solid; border-radius: 5px; }
+    .tip { background-color: #e9f7ef; border-color: var(--frontend-color); }
+    .example { background-color: #fbeae9; border-color: var(--backend-color); }
+    .key-concept { background-color: #f8f9fa; border-color: var(--shared-color); }
+    .code-block { background: #2d2d2d; color: #f8f9fa; padding: 15px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; font-size: 0.9rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid var(--border-color); padding: 14px; text-align: left; }
+    th { background-color: #f8f9fa; font-weight: 600; }
+    .checklist { background-color: #fff9e6; border: 1px solid #ffd666; padding: 20px; border-radius: 8px; margin-top: 30px; }
+    .checklist ul { list-style-type: '✅ '; padding-left: 25px; }
+    .diagram { text-align: center; padding: 20px; background-color: #f8f9fa; border-radius: 8px; margin: 20px 0; }
+    footer { text-align: center; padding: 40px; margin-top: 50px; color: #868e96; background-color: #e9ecef; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>现代Web开发培训教科书</h1>
+    <p>从零到一，掌握构建卓越数字产品的全链路技艺</p>
+</header>
+
+<main>
+
+<div class="box key-concept">
+    <h2>前言：像经营一家餐厅一样做开发</h2>
+    <p>欢迎来到“数字奇迹之城”的核心功能建设区！在这座城市里，每一个网站或Web应用，都像一家提供顶级服务的高级餐厅，是市民（用户）最常光顾的地方。要经营好这家餐厅，你需要同时精通“后厨”和“大堂”的艺术。</p>
+    <ul>
+        <li><strong>后端开发（The Kitchen / 厨房）</strong>：这里是餐厅的心脏，顾客看不见但至关重要。厨师们（后端开发者）在这里处理订单、烹饪菜肴（业务逻辑）、管理库存（数据库）、保证食品安全（系统安全）。厨房的效率和质量，决定了餐厅的硬实力。</li>
+        <li><strong>前端开发（The Dining Hall / 大堂）</strong>：这里是顾客直接体验的地方。大堂经理和设计师（前端开发者）负责装修风格、菜单设计、座位安排、灯光音乐（UI/UX），确保顾客拥有舒适、愉悦的用餐体验。大堂的品质，决定了顾客的第一印象和回头率。</li>
+        <li><strong>API（The Waiter / 服务员）</strong>：服务员是连接厨房与大堂的桥梁。他把顾客的点单（请求）准确无误地传到厨房，再把烹饪好的菜肴（响应）优雅地送到顾客面前。服务员的专业与否，直接影响餐厅的整体运转效率。</li>
+        <li><strong>全栈开发者（The Chef-Owner / 主厨兼老板）</strong>：他既懂烹饪，又懂经营，能从全局视角审视餐厅的每一个环节，做出最优决策。</li>
+    </ul>
+    <p>本手册将带你深入“厨房”和“大堂”，让你既能成为顶级的“厨师”，也能成为一流的“大堂经理”，并深刻理解“服务员”的工作艺术。</p>
+</div>
+
+<h2 class="part-title">第一部分：共享基础 - 餐厅的运营手册</h2>
+
+<details open>
+    <summary class="shared-chapter">第 1 章：通用语言 - HTTP协议与Web工作原理</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解Web应用最底层的通信机制，这是前后端开发者能够对话的基础。</p>
+        
+        <h3>1.1 客户端-服务器模型：一次点餐的流程</h3>
+        <p>Web世界基于一个简单的模型：你的浏览器（客户端）向某个服务器（如 `www.google.com`）发送一个**请求（Request）**，服务器处理后返回一个**响应（Response）**。这就像顾客（客户端）向服务员点菜（发送请求），厨房（服务器）做好后由服务员送回（返回响应）。</p>
+        <div class="diagram">
+            <h4>HTTP 请求-响应 周期</h4>
+            <div class="code-block" style="text-align: left; font-size: 1rem;">
+  [你的浏览器]                               [Web服务器]
+      |                                           |
+      |  1. 发送请求 (GET /tasks/123)  -----------> |
+      |  (我想看123号任务的详情)                      |
+      |                                           |
+      |                                           |  2. 服务器处理请求
+      |                                           |  (去数据库里找123号任务)
+      |                                           |
+      |  <----------- 4. 返回响应 (200 OK + HTML/JSON) |
+      |  (这是你要的任务详情)                       |
+      |                                           |
+  3. 浏览器渲染页面
+  (把任务详情显示出来)
+            </div>
+        </div>
+        
+        <h3>1.2 HTTP请求的详细构造 (点菜单的细节)</h3>
+        <div class="code-block">
+# 1. 请求行: 我要做什么?
+GET /tasks/123 HTTP/1.1
+
+# 2. 请求头: 我的附加信息
+Host: api.taskmaster.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) ...
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+# 3. 请求体 (GET请求通常没有, POST/PUT请求有): 我要提交的数据
+# (如果是创建新任务，这里会有JSON数据)
+        </div>
+        <ul>
+            <li><strong>请求行:</strong> `GET` 是方法，`/tasks/123` 是想访问的资源路径，`HTTP/1.1` 是协议版本。</li>
+            <li><strong>Host:</strong> 告诉服务器我想访问的是哪个网站（因为一台服务器上可能有很多网站）。</li>
+            <li><strong>Accept:</strong> 告诉服务器我能看懂什么格式的数据（这里是JSON）。</li>
+            <li><strong>Authorization:</strong> 告诉服务器我的身份凭证（Token），证明我是登录用户。</li>
+        </ul>
+
+        <h3>1.3 HTTP响应的详细构造 (上菜的细节)</h3>
+        <div class="code-block">
+# 1. 状态行: 厨房处理得怎么样?
+HTTP/1.1 200 OK
+
+# 2. 响应头: 这道菜的附加信息
+Content-Type: application/json
+Content-Length: 150
+Date: Fri, 15 Aug 2025 10:21:00 GMT
+Cache-Control: no-cache
+
+# 3. 响应体: 菜本身
+{
+  "id": "123",
+  "title": "完成培训手册",
+  "status": "completed"
+}
+        </div>
+        <ul>
+            <li><strong>状态行:</strong> `200 OK` 是最重要的信息，表示成功了！</li>
+            <li><strong>Content-Type:</strong> 告诉浏览器我给你的是什么格式的数据（JSON），浏览器就知道该如何解析。</li>
+            <li><strong>Cache-Control:</strong> 告诉浏览器要不要缓存这个结果，`no-cache` 表示下次还要来问我。</li>
+        </ul>
+        <div class="tip box">
+            <h4>必须记住的关键状态码</h4>
+            <ul>
+                <li><strong>2xx (成功):</strong> 200 OK (请求成功), 201 Created (资源创建成功), 204 No Content (成功但无内容返回)。</li>
+                <li><strong>3xx (重定向):</strong> 301 Moved Permanently (永久搬家了), 302 Found (临时搬家了)。</li>
+                <li><strong>4xx (客户端错误):</strong> 400 Bad Request (你的请求我看不懂), 401 Unauthorized (你没登录), 403 Forbidden (你没权限), 404 Not Found (你要的东西不存在)。</li>
+                <li><strong>5xx (服务器错误):</strong> 500 Internal Server Error (服务器内部代码出错了), 503 Service Unavailable (服务器太忙了，稍后再试)。</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary class="shared-chapter">第 2 章：协作基石 - Git版本控制</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握现代开发团队协作的必备工具，学会如何安全、高效地管理代码变更。</p>
+
+        <h3>2.1 为什么需要版本控制？</h3>
+        <p>想象一下，你和同事同时修改一份Word文档，最后谁的版本覆盖谁的？简直是灾难。Git解决了这个问题，它像一个拥有无限“撤销”和“重做”功能的超级记事本，记录了每一次代码修改，并能让多人协作而不互相干扰。</p>
+
+        <h3>2.2 核心概念与工作区</h3>
+        <ul>
+            <li><strong>工作区 (Working Directory):</strong> 你在电脑上能看到的项目文件夹。</li>
+            <li><strong>暂存区 (Staging Area):</strong> 一个临时的存储区域，用来存放你“打算”下次提交的修改。</li>
+            <li><strong>本地仓库 (Local Repository):</strong> 存储在你电脑上的完整项目历史记录。</li>
+            <li><strong>远程仓库 (Remote Repository):</strong> 托管在服务器（如GitHub）上的项目历史记录，是团队共享代码的地方。</li>
+        </ul>
+
+        <h3>2.3 个人开发基本流程 (Step-by-Step)</h3>
+        <div class="code-block">
+# 1. 克隆远程仓库到本地 (只需要做一次)
+git clone https://github.com/your-company/taskmaster-pro.git
+
+# 2. 进入项目目录
+cd taskmaster-pro
+
+# 3. 创建并切换到一个新分支来开发新功能
+git checkout -b feature/user-login
+
+# 4. 编写你的代码... (比如创建 login.html, login.css)
+
+# 5. 将你想要提交的文件添加到暂存区
+git add login.html login.css
+
+# 6. 提交暂存区的修改到本地仓库，并写清楚提交信息
+git commit -m "Feat: Add user login page structure and styles"
+
+# 7. 将你的本地分支推送到远程仓库
+git push origin feature/user-login
+
+# 8. 在GitHub上创建一个Pull Request，请求团队成员审查你的代码
+        </div>
+        
+        <h3>2.4 GitFlow工作流：一种规范的团队协作模式</h3>
+        <p>GitFlow是一种流行的、规范化的分支管理策略，非常适合有明确发布周期的项目。</p>
+        <div class="diagram">
+            <h4>简化的GitFlow模型</h4>
+            <div class="code-block" style="text-align: left;">
+# 主分支，永远是可发布状态，有版本号标签
+main: ------o-----------o-------> (v1.0)      (v1.1)
+
+# 开发主分支，所有新功能的集成点
+develop: --o---o---o---M---o--->
+           |         / |
+# 功能分支，开发新功能的地方 (从develop分出，合并回develop)
+feature/login: \-o---o--/
+# 修复分支，用于紧急修复线上bug (从main分出，合并回main和develop)
+hotfix/bug-123:            \-o--/
+            </div>
+            <p><strong>流程简介：</strong>所有开发都在 `develop` 分支的子分支（如 `feature/login`）上进行。完成后合并回 `develop`。当准备发布新版本时，从 `develop` 创建一个 `release` 分支进行测试，最后合并到 `main` 和 `develop` 并打上版本标签。</p>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第二部分：前端路径 - 打造卓越的“大堂体验”</h2>
+
+<details>
+    <summary class="frontend-chapter">第 3 章：Web三原色 - HTML, CSS, JavaScript</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>牢固掌握构建网页的三大基石，理解它们各自的职责。</p>
+        <ul>
+            <li><strong>HTML (结构):</strong> 餐厅的建筑结构。定义了哪里是门，哪里是窗，哪里是餐桌。</li>
+            <li><strong>CSS (样式):</strong> 餐厅的室内装修。决定了墙壁的颜色，桌布的材质，灯光的明暗。</li>
+            <li><strong>JavaScript (交互):</strong> 餐厅的服务流程。实现了点击菜单显示详情，预定座位后按钮变灰等动态效果。</li>
+        </ul>
+        <h3>3.1 HTML5: 语义化的结构</h3>
+        <p>使用有意义的标签，而不是通篇`<div>`。这不仅让代码更易读，也对搜索引擎优化(SEO)和无障碍访问有好处。</p>
+        <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;TaskMaster Pro&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;我的任务列表&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;article class="task-item"&gt;
+            &lt;h2&gt;完成培训手册&lt;/h2&gt;
+            &lt;p&gt;截止日期: 2025-08-16&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2025 TaskMaster Inc.&lt;/p&gt;
+    &lt;/footer&gt;
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </div>
+
+        <h3>3.2 CSS3: 现代布局与美化</h3>
+        <p>Flexbox是现代CSS布局的核心，让你轻松实现元素的对齐、分布和排序。</p>
+        <div class="code-block">
+/* style.css */
+.task-item {
+    display: flex; /* 启用Flexbox布局 */
+    justify-content: space-between; /* 子元素两端对齐 */
+    align-items: center; /* 子元素垂直居中 */
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+        </div>
+
+        <h3>3.3 JavaScript: 让页面“活”起来</h3>
+        <p>JS的核心是响应用户的操作（事件），并动态地修改页面的内容和样式（DOM操作）。</p>
+        <div class="code-block">
+// app.js
+
+// 1. 找到页面上的元素
+const taskArticle = document.querySelector('.task-item');
+const taskTitle = taskArticle.querySelector('h2');
+
+// 2. 监听用户的点击事件
+taskArticle.addEventListener('click', function() {
+    // 3. 修改元素的样式和内容
+    taskArticle.style.backgroundColor = '#d4edda'; // 变绿
+    taskTitle.textContent = '任务已完成！'; // 修改文字
+});
+
+// 从服务器获取数据 (异步操作)
+async function fetchTasks() {
+    try {
+        const response = await fetch('https://api.taskmaster.com/tasks');
+        const tasks = await response.json();
+        console.log('从服务器获取的任务:', tasks);
+        // 此处可以编写代码将任务动态渲染到页面上
+    } catch (error) {
+        console.error('获取任务失败:', error);
+    }
+}
+
+fetchTasks();
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary class="frontend-chapter">第 4 章：现代框架 - 用组件化思维建构界面</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解为什么需要前端框架，并掌握至少一个主流框架（如React或Vue）的核心思想。</p>
+        
+        <h3>4.1 为什么需要框架？</h3>
+        <p>当餐厅（网页）变得非常大、非常复杂时，如果还用传统方法装修（手动操作DOM），会变得混乱不堪。前端框架提供了一套“预制件”和“标准化施工流程”（组件化、状态管理），让你能像搭乐高一样快速、有序地构建复杂的交互界面。</p>
+
+        <h3>4.2 核心思想：组件化 (Componentization)</h3>
+        <p>组件化就是把一个复杂的界面，拆分成一个个独立的、可复用的小块。比如一个“任务项(TaskItem)”组件，它包含了标题、截止日期、完成按钮，你可以在任务列表里复用它一百次，而只需要写一次代码。</p>
+
+        <h3>4.3 核心思想：状态管理 (State Management)</h3>
+        <p>“状态”就是驱动界面变化的数据。比如一个任务列表组件，它的状态就是 `tasks` 数组。当这个状态改变时（用户添加了一个新任务），框架会自动重新渲染界面，显示新的任务列表。你只需要关心数据，而不用手动去修改界面，这就是“数据驱动视图”。</p>
+        <div class="tip box">
+            <h4>React vs. Vue: 一个计数器组件的对比</h4>
+            <p><strong>React (使用JSX):</strong></p>
+            <div class="code-block">
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;你点击了 {count} 次&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        点我
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+            </div>
+            <p><strong>Vue (使用模板语法):</strong></p>
+            <div class="code-block">
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;你点击了 {{ count }} 次&lt;/p&gt;
+    &lt;button @click="count++"&gt;点我&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const count = ref(0);
+    return { count };
+  }
+}
+&lt;/script&gt;
+            </div>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第三部分：后端路径 - 精通高效的“厨房艺术”</h2>
+
+<details>
+    <summary class="backend-chapter">第 5 章：厨房的核心 - 语言与框架</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握至少一门主流后端语言及其生态，并能利用框架快速开发。为保持一致性，我们以Node.js为例。</p>
+        <p>Node.js让你可以用JavaScript来编写后端代码。Express.js是一个极简而灵活的Node.js Web应用框架，是入门的绝佳选择。</p>
+        <h3>5.1 创建你的第一个Express服务器</h3>
+        <div class="code-block">
+// 1. 安装 express
+// npm install express
+
+// 2. 创建 server.js 文件
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// 定义一个路由: 当用户访问根路径'/'时，我们如何响应
+app.get('/', (req, res) => {
+  res.send('欢迎来到TaskMaster的厨房!');
+});
+
+// 启动服务器，并监听3000端口
+app.listen(port, () => {
+  console.log(`服务器正在 http://localhost:${port} 上运行`);
+});
+        </div>
+        <p>现在，在命令行运行 `node server.js`，然后在浏览器访问 `http://localhost:3000`，你就能看到欢迎信息了！你已经搭建了一个最简单的“厨房”。</p>
+    </div>
+</details>
+
+<details>
+    <summary class="backend-chapter">第 6 章：食材储藏 - 数据库技术</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解不同类型数据库的适用场景，并能设计和操作数据库。</p>
+        
+        <h3>6.1 SQL (关系型数据库) - 结构化的账本</h3>
+        <p>以MySQL为例，我们需要为“TaskMaster Pro”的任务设计一张表。</p>
+        <div class="code-block">
+CREATE TABLE tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    status ENUM('todo', 'in-progress', 'done') DEFAULT 'todo',
+    due_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+        </div>
+        <p><strong>常用操作：</strong></p>
+        <ul>
+            <li>`INSERT INTO tasks (title, description) VALUES ('学习SQL', '完成教科书第六章');`</li>
+            <li>`SELECT * FROM tasks WHERE status = 'todo';`</li>
+            <li>`UPDATE tasks SET status = 'done' WHERE id = 1;`</li>
+        </ul>
+
+        <h3>6.2 NoSQL (非关系型数据库) - 灵活的储物柜</h3>
+        <p>以MongoDB为例，一条任务数据可能长这样（JSON格式），不需要预先定义表结构。</p>
+        <div class="code-block">
+{
+  "_id": ObjectId("64dcf0a7a4b2e3a4c8a3b8b1"),
+  "title": "学习NoSQL",
+  "status": "in-progress",
+  "tags": ["database", "backend"],
+  "comments": [
+    { "user": "Alice", "comment": "这个很有用！" },
+    { "user": "Bob", "comment": "我同意。" }
+  ]
+}
+        </div>
+        <p>可以看到，NoSQL能很自然地存储嵌套的数据结构（如 `comments` 数组），这在SQL中会更复杂。</p>
+    </div>
+</details>
+
+<details>
+    <summary class="backend-chapter">第 7 章：上菜的艺术 - 设计RESTful API</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握设计清晰、规范、易于理解的API的能力，这是前后端高效协作的关键。</p>
+        <p>RESTful是一种流行的API设计风格，它强调使用标准的HTTP方法来操作“资源”。我们来为“任务(Task)”资源设计一套API。</p>
+        
+        <h3>7.1 用Express实现任务API</h3>
+        <p>这是 `server.js` 的扩展版本，实现了获取和创建任务的API。</p>
+        <div class="code-block">
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// 中间件：让Express能解析请求体中的JSON数据
+app.use(express.json());
+
+// 模拟的数据库
+let tasks = [
+    { id: 1, title: '学习Node.js', status: 'done' },
+    { id: 2, title: '编写API', status: 'in-progress' }
+];
+let nextId = 3;
+
+// API: 获取所有任务
+app.get('/api/tasks', (req, res) => {
+    res.json(tasks);
+});
+
+// API: 创建一个新任务
+app.post('/api/tasks', (req, res) => {
+    const newTask = {
+        id: nextId++,
+        title: req.body.title, // 从请求体中获取标题
+        status: 'todo'
+    };
+    tasks.push(newTask);
+    res.status(201).json(newTask); // 返回201 Created状态码和新任务
+});
+
+app.listen(port, () => {
+  console.log(`服务器正在 http://localhost:${port} 上运行`);
+});
+        </div>
+        <div class="example box">
+            <h4>如何测试API？</h4>
+            <p>你可以使用 Postman 或 VS Code的REST Client插件等工具来测试你的API，而不需要编写前端页面。例如，向 `http://localhost:3000/api/tasks` 发送一个POST请求，请求体为 `{"title": "测试Postman"}`，看看服务器是否正确返回了新创建的任务。</p>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第四部分：开业大吉 - 项目整合与持续运营</h2>
+<div class="box key-concept">
+    <p>恭喜你！作为“数字奇迹之城”中顶级餐厅的“主厨兼老板”，你现在已经掌握了从后厨到大堂的全链路技艺。</p>
+    <p><strong>“TaskMaster Pro”项目实战整合：</strong></p>
+    <ol>
+        <li><strong>定义API契约：</strong>后端首先设计并提供所有功能的API文档（如使用Swagger/OpenAPI）。这是前后端协作的“法律合同”。</li>
+        <li><strong>并行开发：</strong>前端根据API文档，使用模拟数据（Mock Data）或Mock Server开发界面；后端则根据API文档实现业务逻辑和数据库操作。</li>
+        <li><strong>联调与测试：</strong>后端部署后，前端将请求地址从Mock Server切换到真实的开发服务器地址。双方一起通过浏览器和开发者工具，联调接口，解决跨域（CORS）等问题，修复Bug。</li>
+        <li><strong>部署上线：</strong>将前端静态文件（HTML/CSS/JS）部署到CDN或Nginx等静态服务器。将后端Node.js应用使用PM2等工具部署到云服务器上。</li>
+        <li><strong>持续优化：</strong>通过日志监控（如Winston）、性能分析工具（如Lighthouse），不断优化“厨房”的烹饪速度和“大堂”的服务体验。</li>
+    ol>
+    <p>但一座伟大的城市，其繁荣离不开所有建设者的通力合作。我们鼓励你继续探索本系列的其他课程，了解城市的“首席规划师”（架构师）是如何设计蓝图的，以及“质检官”（测试工程师）是如何确保食品安全的，这将让你成为一名视野更广阔的开发者。</p>
+    <p>Web开发是一个永无止境的旅程。技术在不断更新，用户的需求也在不断变化。保持好奇心，持续学习，是你作为一名优秀开发者最重要的品质。</p>
+</div>
+
+</main>
+
+<footer>
+    <p style="font-size: 1.1em; font-weight: 500; color: #495057; margin-bottom: 10px;">
+        本系列课程由 <strong>许展玮 (Lupin)</strong> 倾力打造
+    </p>
+    <p style="font-size: 0.9em; color: #868e96; margin-top: 0;">
+        © 2025 在问 (zaiwen) 现代软件开发培训系列. All Rights Reserved.
+    </p>
+</footer>
+
+</body>
+</html>

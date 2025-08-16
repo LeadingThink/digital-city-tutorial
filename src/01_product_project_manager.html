@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代软件开发核心岗位培训系列 - 产品与项目经理篇</title>
+<style>
+    :root {
+        --pm-color: #0077b6; /* Product Manager Blue */
+        --pjm-color: #c94c4c; /* Project Manager Red */
+        --shared-color: #4a934a; /* Shared Green */
+        --bg-color: #f8f9fa;
+        --text-color: #343a40;
+        --card-bg: #ffffff;
+        --border-color: #e9ecef;
+    }
+    body {
+        font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+        line-height: 1.9;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    header {
+        background: linear-gradient(135deg, var(--pm-color), var(--pjm-color));
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    header h1 { margin: 0; font-size: 2.8rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+    header p { margin: 10px 0 0; font-size: 1.2rem; opacity: 0.9; }
+    main { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+    .part-title {
+        text-align: center;
+        margin: 60px 0 30px;
+        font-size: 2.2rem;
+        color: #495057;
+        font-weight: 300;
+    }
+    details {
+        background: var(--card-bg);
+        border-radius: 10px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid var(--border-color);
+        transition: box-shadow 0.3s ease;
+    }
+    details[open] { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+    summary {
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 25px;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    summary.pm-chapter { color: var(--pm-color); }
+    summary.pjm-chapter { color: var(--pjm-color); }
+    summary.shared-chapter { color: var(--shared-color); }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '＋'; font-size: 2.2rem; transition: transform 0.3s; color: #adb5bd; }
+    details[open] > summary::after { transform: rotate(45deg); }
+    .content-wrapper { padding: 0 30px 30px; border-top: 1px solid var(--border-color); }
+    h3 { font-size: 1.3rem; margin-top: 35px; border-bottom: 2px solid #f1f3f5; padding-bottom: 10px; }
+    .box { padding: 20px; margin: 20px 0; border-left-width: 5px; border-left-style: solid; border-radius: 5px; }
+    .tip { background-color: #e7f5ff; border-color: var(--pm-color); }
+    .example { background-color: #fff4f4; border-color: var(--pjm-color); }
+    .key-concept { background-color: #f0fff0; border-color: var(--shared-color); }
+    .code-block { background: #2d2d2d; color: #f8f9fa; padding: 15px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid var(--border-color); padding: 14px; text-align: left; }
+    th { background-color: #f8f9fa; font-weight: 600; }
+    .checklist { background-color: #fff9e6; border: 1px solid #ffd666; padding: 20px; border-radius: 8px; margin-top: 30px; }
+    .checklist ul { list-style-type: '✅ '; padding-left: 25px; }
+    .diagram { text-align: center; padding: 20px; background-color: #f8f9fa; border-radius: 8px; margin: 20px 0; }
+    footer { text-align: center; padding: 40px; margin-top: 50px; color: #868e96; background-color: #e9ecef; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>产品经理(PM)与项目经理(PjM)入门培训教科书</h1>
+    <p>从零到一，掌握构建卓越数字产品的全链路技艺</p>
+</header>
+
+<main>
+
+<div class="box key-concept">
+    <h2>前言：开启你的造船之旅</h2>
+    <p>欢迎来到“数字奇迹之城”的建设现场！在这座宏伟的城市中，每一次新产品的开发，都像是一次伟大的远航，去探索未知的海域，寻找传说中的宝藏。而产品经理和项目经理，就是这次航行的关键发起者。</p>
+    <ul>
+        <li><strong>产品经理（PM）是“航海家”</strong>：他不是船长，但决定了船要去向何方。他研究星象（市场趋势）、海图（竞品格局）和藏宝图的传说（用户需求），最终宣布：“我们的目标是东方传说中的‘太阳岛’，因为那里的宝石价值连城！” 他定义了<strong>“正确的事”</strong>。</li>
+        <li><strong>项目经理（PjM）是“总工程师”</strong>：他也不是船长，但负责把船造出来。他拿到航海家绘制的草图，计算需要多少木材（资源）、多少工匠（人力）、多少金币（预算），并制定了一份详细的造船计划，确保船能在季风来临前（时间）坚固地完工。他负责<strong>“把事做正确”</strong>。</li>
+    </ul>
+    <p>只有“航海家”指对了方向，“总工程师”造好了船，这次航行才能成功。本手册将系统地教你如何成为一名出色的“航海家”和“总工程师”，并让他们完美协作。</p>
+</div>
+
+<h2 class="part-title">第一部分：共同的基石 (The Foundation)</h2>
+
+<details open>
+    <summary class="shared-chapter">第 1 章：核心职责深度解析 - PM vs. PjM</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>在本章结束时，你将能够清晰地阐述PM和PjM的职责，并能通过日常工作中的具体问题来区分他们。</p>
+        
+        <h3>1.1 职责定义：一句话说清</h3>
+        <p><strong>产品经理 (Product Manager, PM)</strong>：对产品的<strong>商业成功</strong>负最终责任。他们是用户的代言人，是市场的洞察者，负责定义产品的愿景、战略和功能，决定团队应该“做什么”和“为什么做”。</p>
+        <p><strong>项目经理 (Project Manager, PjM)</strong>：对项目的<strong>成功交付</strong>负最终责任。他们是计划的守护者，是资源的协调者，负责将产品蓝图转化为可执行的计划，并确保在时间、成本和质量的约束下，团队能够“如何做”和“何时完成”。</p>
+        
+        <h3>1.2 核心差异对比表（详细版）</h3>
+        <table>
+            <thead><tr><th>维度</th><th>产品经理 (PM)</th><th>项目经理 (PjM)</th></tr></thead>
+            <tbody>
+                <tr><td><strong>核心问题</strong></td><td>我们应该构建什么正确的产品？(What & Why)</td><td>我们如何按时按质地构建这个产品？(How & When)</td></tr>
+                <tr><td><strong>关注焦点</strong></td><td>产品价值、用户体验、市场回报 (ROI)、长期战略</td><td>项目进度、资源、预算、风险、交付质量、短期目标</td></tr>
+                <tr><td><strong>工作周期</strong></td><td>持续性 (Ongoing)，贯穿产品从概念到消亡的全生命周期</td><td>临时性 (Temporary)，有明确的开始和结束日期</td></tr>
+                <tr><td><strong>关键产出物</strong></td><td>市场分析报告、用户画像、产品需求文档(PRD)、产品路线图(Roadmap)</td><td>项目计划书、甘特图、风险登记册、状态报告、会议纪要</td></tr>
+                <tr><td><strong>成功标准</strong></td><td>产品用户增长、客户满意度、市场份额、商业利润</td><td>项目按时、按预算、按范围完成，干系人满意</td></tr>
+                <tr><td><strong>典型的一天</strong></td><td>与用户交谈、分析数据、研究竞品、撰写需求、与设计师讨论原型</td><td>开每日站会、更新项目计划、协调资源冲突、向领导汇报进度、管理风险</td></tr>
+                <tr><td><strong>常被问到的问题</strong></td><td>“我们的用户真正需要什么？”<br>“这个功能能带来多大价值？”<br>“我们未来半年的方向是什么？”</td><td>“这个任务什么时候能完成？”<br>“我们的人手/预算够吗？”<br>“目前项目有什么风险？”</td></tr>
+            </tbody>
+        </table>
+
+        <h3>1.3 协同的价值：1 + 1 > 2</h3>
+        <p>PM和PjM不是竞争关系，而是互补的伙伴关系。他们的紧密协作能产生巨大的化学反应：</p>
+        <ul>
+            <li>PM确保团队的努力都花在“刀刃上”，避免开发出没人用的功能。</li>
+            <li>PjM确保团队的“刀”足够锋利，能够高效、有序地完成工作，避免混乱和延期。</li>
+        </ul>
+
+        <div class="checklist">
+            <h4>第一章自查清单</h4>
+            <ul>
+                <li>我能用“航海家”和“总工程师”的比喻来解释PM和PjM的区别吗？</li>
+                <li>当一个新想法出现时，应该先由谁来评估它的市场价值？</li>
+                <li>当开发团队说“我们人手不够，无法按时完成”时，应该主要由谁来处理？</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary class="shared-chapter">第 2 章：现代开发流程 - 敏捷与Scrum实战</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解敏捷思想的精髓，并掌握Scrum框架的基本运作方式，为后续的协作打下流程基础。</p>
+
+        <h3>2.1 为什么需要敏捷？从瀑布模型说起</h3>
+        <p>想象一下传统的“瀑布模型”，就像建房子：必须先完成所有设计，然后打地基，再盖楼，最后装修。每个阶段环环相扣，一旦进入下一阶段，想回头修改设计的成本极高。</p>
+        <p>但在软件开发这个充满不确定性的世界里，用户的需求会变，市场会变，技术也会变。如果我们花一年时间严格按计划开发，产品上线时可能已经过时了。<strong>敏捷（Agile）</strong>因此诞生，它的核心思想就是：<strong>拥抱变化，通过短周期、快节奏的迭代来持续交付价值和收集反馈。</strong></p>
+        
+        <h3>2.2 Scrum框架：最流行的敏捷实践</h3>
+        <p>Scrum是实现敏捷最流行的一种具体框架。它把复杂的项目拆分成一个个短小的、固定时长的“冲刺”（Sprint），通常为2-4周。每个Sprint结束时，都会产出一个可用的、小型的产品版本。</p>
+        <div class="diagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Scrum_process.svg/1200px-Scrum_process.svg.png" alt="Scrum流程图" style="max-width:100%; height:auto; background-color: white; padding:10px; border-radius: 8px;">
+            <p><small>Scrum 流程图：从产品待办列表开始，经过一个个Sprint循环，最终产出可交付的产品增量。</small></p>
+        </div>
+        
+        <h3>2.3 Scrum实战详解</h3>
+        <table>
+            <thead><tr><th>Scrum元素</th><th>详细说明与实战要点</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><strong>产品待办列表 (Product Backlog)</strong></td>
+                    <td>这是一个包含了所有产品需求、功能、修复和改进的动态列表，由<strong>产品经理（作为产品负责人）</strong>全权负责。<strong>要点：</strong>列表中的每一项都应有优先级、价值和初步估算，优先级最高的排在最上面。</td>
+                </tr>
+                <tr>
+                    <td><strong>Sprint规划会 (Sprint Planning)</strong></td>
+                    <td>在Sprint开始时，整个团队（PM, PjM, 开发）一起开会。<strong>第一部分：</strong>PM阐述本次Sprint的目标和最重要的待办事项。<strong>第二部分：</strong>开发团队选择他们承诺能完成的工作量，并分解成具体任务，形成<strong>Sprint待办列表 (Sprint Backlog)</strong>。</td>
+                </tr>
+                <tr>
+                    <td><strong>每日站会 (Daily Stand-up)</strong></td>
+                    <td>每天固定时间，不超过15分钟。每个团队成员轮流回答三个问题：1. 昨天我做了什么？ 2. 今天我准备做什么？ 3. 我遇到了什么障碍？ <strong>要点：</strong>这不是汇报会，而是团队内部的同步和协调会。PjM需要特别关注“障碍”，并会后帮助解决。</td>
+                </tr>
+                <tr>
+                    <td><strong>Sprint评审会 (Sprint Review)</strong></td>
+                    <td>在Sprint结束时，团队向所有干系人（老板、市场部、客服等）演示本次Sprint完成的可工作软件。<strong>要点：</strong>这是一个收集反馈、庆祝成果的会议，而不是PPT汇报。PM会根据反馈来调整产品待办列表。</td>
+                </tr>
+                <tr>
+                    <td><strong>Sprint回顾会 (Sprint Retrospective)</strong></td>
+                    <td>评审会后，只有团队内部成员参加。大家一起复盘这个Sprint中哪些做得好、哪些可以改进、以及如何改进。<strong>要点：</strong>这是一个关注“流程”和“协作”的改进会议，PjM通常负责引导。</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="checklist">
+            <h4>第二章自查清单</h4>
+            <ul>
+                <li>我能说出敏捷和瀑布模型最大的区别吗？</li>
+                <li>产品待办列表和Sprint待办列表有什么不同？分别由谁主要负责？</li>
+                <li>Sprint评审会和回顾会的主要目的和参会人员有什么不同？</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第二部分：产品经理(PM)的旅程 - 定义正确的事</h2>
+
+<details>
+    <summary class="pm-chapter">第 3 章：市场与用户研究 - 成为用户的知己</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握基础的市场分析和用户研究方法，学会从纷繁的信息中找到产品的机会点。</p>
+
+        <h3>3.1 宏观市场分析：PEST模型</h3>
+        <p>在思考具体产品前，先抬头看看天空。PEST模型帮助我们分析宏观环境：</p>
+        <ul>
+            <li><strong>P (Political) 政治：</strong>行业政策、法规变化等。</li>
+            <li><strong>E (Economic) 经济：</strong>经济增长、消费水平、通货膨胀等。</li>
+            <li><strong>S (Social) 社会：</strong>人口结构、生活方式、文化趋势等。<em>（例如：“懒人经济”和“健康焦虑”催生了我们的健康午餐App）</em></li>
+            <li><strong>T (Technological) 技术：</strong>移动支付、物流技术、AI推荐算法等。</li>
+        </ul>
+
+        <h3>3.2 竞品分析：知己知彼</h3>
+        <p>选择2-3个主要竞争对手，建立一个分析矩阵，从多个维度进行系统性对比。</p>
+        <div class="example box">
+            <h4>竞品分析矩阵模板（以健康午餐App为例）</h4>
+            <table>
+                <thead><tr><th>维度</th><th>我们的App（待定）</th><th>竞品A (外卖平台)</th><th>竞品B (轻食店)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>核心功能</strong></td><td>按周订阅、盲盒模式</td><td>选择多、配送快</td><td>线下体验、食材新鲜</td></tr>
+                    <tr><td><strong>目标用户</strong></td><td>忙碌、有健康需求的白领</td><td>所有需要点餐的人</td><td>注重生活品质的健身人群</td></tr>
+                    <tr><td><strong>定价策略</strong></td><td>每周固定费用</td><td>按单收费+配送费</td><td>单品价格较高</td></tr>
+                    <tr><td><strong>优势 (Strengths)</strong></td><td>省心、健康搭配</td><td>选择自由度高</td><td>品牌形象好</td></tr>
+                    <tr><td><strong>劣势 (Weaknesses)</strong></td><td>选择少、口味不确定</td><td>油腻、不健康</td><td>价格贵、覆盖范围小</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>3.3 用户研究：倾听用户的声音</h3>
+        <p><strong>用户访谈：</strong>找到你的目标用户，和他们进行一次深入的、开放式的交谈。记住，你的目标是“倾听”，而不是“推销”。</p>
+        <div class="tip box">
+            <strong>有效访谈提问技巧：</strong>
+            <ul>
+                <li><strong>问开放性问题：</strong>不要问“你喜欢我们的盲盒想法吗？”，而要问“可以和我聊聊你平时是怎么解决午餐问题的吗？”</li>
+                <li><strong>关注过去的行为：</strong>不要问“你将来会用吗？”，而要问“你上周有几次是因为太忙而随便吃了点东西？”</li>
+                <li><strong>深挖“为什么”：</strong>当用户说“我讨厌点外卖”时，追问“能具体说说是什么让你讨厌吗？”</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary class="pm-chapter">第 4 章：需求与文档 - 将想法转化为蓝图</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>学会使用用户故事来表达需求，并掌握撰写一份清晰、完整的PRD的核心要素。</p>
+
+        <h3>4.1 用户故事与INVEST原则</h3>
+        <p>用户故事是敏捷开发中描述需求的标准格式：<strong>作为一个 [角色], 我想要 [完成某件事], 以便 [获得某种价值]</strong>。</p>
+        <p>一个好的用户故事应遵循<strong>INVEST</strong>原则：</p>
+        <ul>
+            <li><strong>I (Independent) 独立：</strong>可以独立开发和交付。</li>
+            <li><strong>N (Negotiable) 可协商：</strong>它不是一份合同，细节可以和团队讨论。</li>
+            <li><strong>V (Valuable) 有价值：</strong>对用户或业务有明确的价值。</li>
+            <li><strong>E (Estimable) 可估算：</strong>开发团队能估算出大致的工作量。</li>
+            <li><strong>S (Small) 小的：</strong>足够小，能在一个Sprint内完成。</li>
+            <li><strong>T (Testable) 可测试：</strong>有明确的验收标准。</li>
+        </ul>
+
+        <h3>4.2 产品需求文档 (PRD) 终极模板</h3>
+        <p>PRD是产品经理最重要的输出物，是团队所有工作的“唯一真实来源”。下面是一个可以直接使用的PRD模板。</p>
+        <div class="tip box">
+            <h4>PRD：[功能名称] - e.g., 用户个人中心 V1.0</h4>
+            <p><strong>1. 文档信息</strong></p>
+            <ul>
+                <li><strong>版本历史：</strong>V1.0 (创建日期), V1.1 (修订日期及内容)...</li>
+                <li><strong>撰写人：</strong>[你的名字]</li>
+                <li><strong>相关干系人：</strong>[项目经理、设计师、开发负责人...]</li>
+            </ul>
+            <p><strong>2. 背景与目标 (Why)</strong></p>
+            <ul>
+                <li><strong>项目背景：</strong>当前用户无法查看自己的订单历史和修改个人信息，导致...</li>
+                <li><strong>用户问题/痛点：</strong>用户想知道自己花了多少钱，或者想修改收货地址时操作不便。</li>
+                <li><strong>商业目标：</strong>通过提升用户体验，增加用户粘性和复购率。</li>
+                <li><strong>成功指标：</strong>上线后1个月内，80%的用户能够成功找到并查看自己的历史订单。</li>
+            </ul>
+            <p><strong>3. 功能范围 (What)</strong></p>
+            <ul>
+                <li><strong>本期功能 (In Scope)：</strong>查看个人资料、修改昵称、查看历史订单列表、查看订单详情。</li>
+                <li><strong>下期功能 (Out of Scope)：</strong>修改密码、上传头像、评价订单。</li>
+            </ul>
+            <p><strong>4. 功能详述 (How)</strong></p>
+            <ul>
+                <li><strong>用户故事1：查看历史订单</strong>
+                    <ul>
+                        <li><strong>描述：</strong>作为一个注册用户，我想要查看我所有的历史订单，以便我了解自己的消费记录。</li>
+                        <li><strong>原型/UI稿链接：</strong>[Figma/Axure链接]</li>
+                        <li><strong>业务规则：</strong>
+                            <ol>
+                                <li>订单按时间倒序排列。</li>
+                                <li>每页显示10条订单。</li>
+                                <li>点击任一订单可进入订单详情页。</li>
+                            </ol>
+                        </li>
+                        <li><strong>验收标准：</strong>...</li>
+                    </ul>
+                </li>
+                <li><strong>用户故事2：...</strong></li>
+            </ul>
+            <p><strong>5. 非功能性需求</strong></p>
+            <ul>
+                <li><strong>性能：</strong>页面加载时间应在2秒以内。</li>
+                <li><strong>兼容性：</strong>兼容最新的Chrome, Firefox浏览器及iOS, Android主流系统。</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第三部分：项目经理(PjM)的剧本 - 正确地做事</h2>
+
+<details>
+    <summary class="pjm-chapter">第 5 章：项目启动与规划 - 绘制航行图</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握项目从启动到制定详细计划的全过程，学会使用WBS和甘特图等核心工具。</p>
+
+        <h3>5.1 项目启动会 (Kick-off) 议程模板</h3>
+        <p>一个成功的启动会能为项目定下积极的基调。PjM需要精心准备议程。</p>
+        <div class="example box">
+            <h4>项目启动会标准议程</h4>
+            <ol>
+                <li><strong>引言与介绍 (5分钟):</strong> PjM欢迎大家，介绍参会人员。</li>
+                <li><strong>项目背景与愿景 (10分钟):</strong> PM阐述项目为何重要，要达到什么商业目标。</li>
+                <li><strong>项目目标与范围 (15分钟):</strong> PjM明确本次项目的具体目标、成功标准和清晰的范围边界。</li>
+                <li><strong>角色与职责 (10分钟):</strong> PjM介绍团队成员及各自的职责。</li>
+                <li><strong>初步计划与里程碑 (10分钟):</strong> PjM展示高阶的项目时间线和关键交付节点。</li>
+                <li><strong>沟通与协作方式 (5分钟):</strong> PjM明确例会时间、沟通渠道（如Slack, Teams）等。</li>
+                <li><strong>Q&A (5分钟):</strong> 解答疑问，确保所有人理解一致。</li>
+            </ol>
+        </div>
+
+        <h3>5.2 工作分解结构 (WBS) 深入</h3>
+        <p>WBS是项目规划的基石，它遵循<strong>100%原则</strong>，即所有子任务的工作量之和必须等于父任务的工作量，确保没有遗漏和多余。分解的最低层被称为“工作包”，这是可以被估算和分配的最小单元。</p>
+
+        <h3>5.3 甘特图：让时间可视化</h3>
+        <p>甘特图是PjM的“作战地图”。它不仅显示了每个任务的开始和结束时间，更重要的是揭示了任务之间的<strong>依赖关系</strong>。例如，“刷墙”这个任务必须在“砌墙”任务完成后才能开始，这就是一种“完成-开始”的依赖关系。</p>
+    </div>
+</details>
+
+<details>
+    <summary class="pjm-chapter">第 6 章：项目执行与风险管理 - 驾驭风浪</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解项目管理的铁三角，并学会一套系统性的风险管理流程。</p>
+        
+        <h3>6.1 项目铁三角：永恒的平衡艺术</h3>
+        <p>项目管理的核心就是平衡“范围、时间、成本”这三个互相制约的因素。PjM的工作就是当其中一个角发生变化时，与PM和干系人沟通，找到最佳的平衡策略。</p>
+        <div class="diagram">
+            <p><strong>范围 (Scope)</strong> <br> ▲ <br> /&nbsp;&nbsp; \&nbsp; <br> <strong>时间 (Time)</strong> ◀——▶ <strong>成本 (Cost)</strong></p>
+            <p><small>中心是质量（Quality）。任何一角的变化都会影响其他两角和中心的质量。</small></p>
+        </div>
+
+        <h3>6.2 风险管理四步法</h3>
+        <p>优秀的PjM不是等问题发生，而是主动管理风险。</p>
+        <ol>
+            <li><strong>风险识别：</strong>通过头脑风暴等方式，尽可能多地列出所有潜在风险。</li>
+            <li><strong>风险分析：</strong>使用风险矩阵评估每个风险的“可能性”和“影响程度”。</li>
+        </ol>
+        <div class="diagram">
+            <h4>风险矩阵</h4>
+            <p>将风险填入矩阵中，落在红色区域的（高可能性、高影响）是需要优先处理的重点风险。</p>
+            <!-- A simple table-based matrix -->
+            <table style="width: 80%; margin: auto; text-align: center;">
+                <tr><td rowspan="3" style="writing-mode: vertical-rl; text-align:center;"><strong>可能性</strong></td><td>高</td><td style="background-color: #fffbe6;">中度关注</td><td style="background-color: #fff4f4;"><strong>高度关注</strong></td></tr>
+                <tr><td>中</td><td style="background-color: #f0fff0;">低度关注</td><td style="background-color: #fffbe6;">中度关注</td></tr>
+                <tr><td>低</td><td style="background-color: #f0fff0;">低度关注</td><td style="background-color: #f0fff0;">低度关注</td></tr>
+                <tr><td colspan="2"></td><td><strong>中</strong></td><td><strong>高</strong></td></tr>
+                <tr><td colspan="2"></td><td colspan="2"><strong>影响程度</strong></td></tr>
+            </table>
+        </div>
+        <ol start="3">
+            <li><strong>风险应对：</strong>为重点风险制定应对策略（规避、减轻、转移、接受）。</li>
+            <li><strong>风险监控：</strong>持续跟踪风险状态，并在项目例会中定期回顾。</li>
+        </ol>
+    </div>
+</details>
+
+<h2 class="part-title">第四部分：协同作战 (Collaboration in Action)</h2>
+
+<details>
+    <summary class="shared-chapter">第 7 章：情景剧 - “健康午餐”App的诞生记</summary>
+    <div class="content-wrapper">
+        <p><strong>场景：</strong>在“健康午餐”App的第一个Sprint中期，一个意想不到的问题出现了。</p>
+        <div class="key-concept box">
+            <p><strong>PM 安娜</strong> 和 <strong>PjM 阿Ben</strong> 的一次对话：</p>
+            <p><strong>阿Ben (PjM):</strong> “安娜，我们遇到个麻烦。原计划对接的第三方支付接口，他们的技术支持说文档更新了，集成工作量比我们预估的要多三天。这会导致我们这个Sprint的核心功能‘一键下单’无法按时完成。”</p>
+            <p><strong>安娜 (PM):</strong> “明白了。这对我们很重要，因为下周就要给种子用户演示。我们有哪些选择？”</p>
+            <p><strong>阿Ben (PjM):</strong> “我分析了一下，有三个方案：
+                <br>1. <strong>加班：</strong>让团队周末加班赶工，但这会影响士气，且质量没保证。
+                <br>2. <strong>砍功能：</strong>暂时去掉下单流程中的‘选择发票’功能，这个功能相对独立，可以放到下个Sprint。这样能省出两天时间。
+                <br>3. <strong>延期：</strong>接受‘一键下单’功能延期三天完成的事实，调整对种子用户的演示计划。”</p>
+            <p><strong>安娜 (PM):</strong> “（思考）从产品价值看，‘一键下单’是核心体验，不能延期。而‘选择发票’对于第一批种子用户来说不是刚需。我决定选择方案2。阿Ben，你来和团队沟通，调整Sprint计划，确保核心功能不受影响。我去和财务部门打个招呼，说明发票功能会稍晚上线。”</p>
+            <p><strong>阿Ben (PjM):</strong> “好的，我马上更新Jira上的任务，并和团队同步这个决定。”</p>
+        </div>
+        <p><strong>分析：</strong>在这个场景中，PjM负责发现问题、分析影响并提供备选方案（关注如何解决交付问题）。PM则基于产品价值和用户体验做出最终决策（关注做什么，不做什么）。两人分工明确，高效地解决了一次危机。</p>
+    </div>
+</details>
+
+<h2 class="part-title">结语</h2>
+<div class="box key-concept">
+    <p>恭喜你完成了“航海家”与“总工程师”的入门训练！</p>
+    <p>你现在已经理解了如何为“数字奇迹之城”的每一次远征指明方向并确保船只的顺利交付。但这只是伟大建设的开始。这座城市还需要顶尖的建筑师、设计师、工程师和质检官。我们鼓励你继续探索本系列的其他课程，了解你的伙伴们是如何工作的，从而成为一名更全面的领导者。</p>
+    <p>请记住，产品管理和项目管理都是实践的艺术。理论知识是你的地图，但真正的能力需要在一次次的“航行”和“造船”中锻炼和成长。不要害怕犯错，每一次挑战都是你积累经验的宝贵机会。</p>
+    <p>现在，合上书本，开始你的旅程吧！</p>
+</div>
+
+</main>
+
+<footer>
+    <p style="font-size: 1.1em; font-weight: 500; color: #495057; margin-bottom: 10px;">
+        本系列课程由 <strong>许展玮 (Lupin)</strong> 倾力打造
+    </p>
+    <p style="font-size: 0.9em; color: #868e96; margin-top: 0;">
+        © 2025 在问 (zaiwen) 现代软件开发培训系列. All Rights Reserved.
+    </p>
+</footer>
+
+</body>
+</html>

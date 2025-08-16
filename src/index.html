@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代软件开发核心岗位培训系列 - 总览</title>
+<style>
+    :root {
+        --primary-color: #343a40;
+        --secondary-color: #007bff;
+        --bg-color: #f8f9fa;
+        --card-bg: #ffffff;
+        --border-color: #dee2e6;
+        --shadow-color: rgba(0, 0, 0, 0.075);
+    }
+    body {
+        font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+        line-height: 1.8;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--primary-color);
+    }
+    header {
+        background: linear-gradient(135deg, #007bff, #6610f2, #fd7e14);
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+        margin: 0;
+        font-size: 3.5rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    header p {
+        margin: 15px 0 0;
+        font-size: 1.4rem;
+        opacity: 0.9;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    main {
+        max-width: 1400px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+    .intro-section {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    .intro-section h2 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+    .intro-section p {
+        font-size: 1.1rem;
+        max-width: 900px;
+        margin: 0 auto;
+        color: #6c757d;
+    }
+    .roles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+    }
+    .role-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px var(--shadow-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .role-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+    }
+    .card-header {
+        padding: 25px;
+        border-bottom: 4px solid;
+    }
+    .card-header h3 {
+        margin: 0;
+        font-size: 1.6rem;
+    }
+    .card-header .metaphor {
+        font-size: 1rem;
+        opacity: 0.8;
+        margin-top: 5px;
+    }
+    .card-content {
+        padding: 25px;
+        flex-grow: 1;
+    }
+    .card-content p {
+        margin: 0 0 20px 0;
+        font-size: 1rem;
+        color: #495057;
+    }
+    .card-footer {
+        padding: 25px;
+        background-color: #f8f9fa;
+        text-align: center;
+    }
+    .card-footer a {
+        text-decoration: none;
+        color: white;
+        background-color: var(--secondary-color);
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+    .card-footer a:hover {
+        background-color: #0056b3;
+    }
+
+    /* Role-specific colors */
+    #pm-pjm .card-header { border-color: #c94c4c; } /* 1 */
+    #arch .card-header { border-color: #0d5a67; } /* 2 */
+    #uiux .card-header { border-color: #8a4baf; } /* 3 */
+    #dev .card-header { border-color: #28a745; } /* 4 */
+    #qa .card-header { border-color: #005f73; } /* 5 */
+    #devops .card-header { border-color: #fd7e14; } /* 6 */
+    #algo .card-header { border-color: #6f42c1; } /* 7 */
+
+    footer {
+        text-align: center;
+        padding: 40px;
+        margin-top: 60px;
+        color: #868e96;
+        background-color: #e9ecef;
+    }
+    @media (max-width: 768px) {
+        header h1 { font-size: 2.5rem; }
+        header p { font-size: 1.1rem; }
+        .intro-section h2 { font-size: 2rem; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>现代软件开发核心岗位培训系列</h1>
+    <p>从零到一，掌握构建卓越数字产品的全链路技艺</p>
+</header>
+
+<main>
+    <section class="intro-section">
+        <h2>欢迎来到数字奇迹之城的建设现场</h2>
+        <p>
+            打造一款卓越的软件产品，就像建造一座宏伟、繁荣、充满活力的现代化都市。这绝非一人之功，而是需要一支由顶尖专家组成的精英团队，各司其职，紧密协作。本系列培训手册，将带您深入了解这座“数字城市”中每一个核心角色的职责、技能与思维方式。无论您想成为哪一位专家，这里都是您的起点。
+        </p>
+    </section>
+
+    <div class="roles-grid">
+        <!-- 1. 产品与项目经理 -->
+        <div class="role-card" id="pm-pjm">
+            <div class="card-header">
+                <h3>产品经理 & 项目经理</h3>
+                <div class="metaphor">城市的航海家与总工程师</div>
+            </div>
+            <div class="card-content">
+                <p>他们是城市建设的发起者。产品经理负责研究星辰大海（市场与用户），确定城市的目标是“黄金之岛”（商业价值）；项目经理则负责绘制造船的精密图纸，确保航船能准时、坚固地建成交付。</p>
+            </div>
+            <div class="card-footer">
+                <a href="01_product_project_manager.html">进入课程</a>
+            </div>
+        </div>
+
+        <!-- 2. 软件架构师 -->
+        <div class="role-card" id="arch">
+            <div class="card-header">
+                <h3>软件架构师</h3>
+                <div class="metaphor">城市的首席规划师</div>
+            </div>
+            <div class="card-content">
+                <p>他们是城市发展的总设计师。他们不关心一砖一瓦，而是从宏观视角规划城市的道路网、水电系统和功能分区。他们的决策，决定了城市未来5到10年的发展潜力和承载上限。</p>
+            </div>
+            <div class="card-footer">
+                <a href="02_software_architect.html">进入课程</a>
+            </div>
+        </div>
+
+        <!-- 3. UI/UX设计师 -->
+        <div class="role-card" id="uiux">
+            <div class="card-header">
+                <h3>UI/UX设计师</h3>
+                <div class="metaphor">城市的建筑师与室内设计师</div>
+            </div>
+            <div class="card-content">
+                <p>他们是城市美学与使用体验的定义者。UX设计师规划城市的人流动线与建筑布局，确保市民生活便利；UI设计师则负责建筑的外观与室内精装修，让城市赏心悦目，充满品牌魅力。</p>
+            </div>
+            <div class="card-footer">
+                <a href="03_ui_ux_designer.html">进入课程</a>
+            </div>
+        </div>
+
+        <!-- 4. Web开发者 -->
+        <div class="role-card" id="dev">
+            <div class="card-header">
+                <h3>Web开发者</h3>
+                <div class="metaphor">城市里顶级餐厅的后厨与大堂经理</div>
+            </div>
+            <div class="card-content">
+                <p>他们是城市核心功能的建造者。后端开发者如同餐厅的五星级厨房，处理着所有核心的业务逻辑；前端开发者则是餐厅的大堂经理，负责打造用户直接体验到的、优雅华丽的界面与交互。</p>
+            </div>
+            <div class="card-footer">
+                <a href="04_web_developer.html">进入课程</a>
+            </div>
+        </div>
+
+        <!-- 5. 软件测试工程师 -->
+        <div class="role-card" id="qa">
+            <div class="card-header">
+                <h3>软件测试工程师</h3>
+                <div class="metaphor">城市的首席质检官与安全巡查员</div>
+            </div>
+            <div class="card-content">
+                <p>他们是城市质量与安全的守护神。在任何建筑对市民开放前，他们会进行严格的质量检测，排查所有潜在的结构缺陷和安全隐患，确保城市的每一个角落都坚固可靠，让市民安心居住。</p>
+            </div>
+            <div class="card-footer">
+                <a href="05_software_tester.html">进入课程</a>
+            </div>
+        </div>
+
+        <!-- 6. 运维/DevOps工程师 -->
+        <div class="role-card" id="devops">
+            <div class="card-header">
+                <h3>运维/DevOps工程师</h3>
+                <div class="metaphor">城市自动化建设局与应急响应中心</div>
+            </div>
+            <div class="card-content">
+                <p>他们是确保城市能够7x24小时自动化运转的工程师。他们建造了自动化的建筑工厂（CI/CD），推广标准化的预制公寓（容器），并时刻监控着城市的生命体征，确保在危机发生时能瞬间响应。</p>
+            </div>
+            <div class="card-footer">
+                <a href="06_devops_engineer.html">进入课程</a>
+            </div>
+        </div>
+
+        <!-- 7. 算法工程师 -->
+        <div class="role-card" id="algo">
+            <div class="card-header">
+                <h3>算法工程师</h3>
+                <div class="metaphor">城市大数据分析与未来预测中心</div>
+            </div>
+            <div class="card-content">
+                <p>他们是城市的“数据侦探”与“预言家”。通过分析城市运行中产生的海量数据，他们洞察市民的行为模式，预测未来的交通流量，优化公共资源配置，让城市变得更智能、更高效。</p>
+            </div>
+            <div class="card-footer">
+                <a href="07_algorithm_engineer.html">进入课程</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p style="font-size: 1.1em; font-weight: 500; color: #495057; margin-bottom: 10px;">
+        本系列课程由 <strong>许展玮 (Lupin)</strong> 倾力打造
+    </p>
+    <p style="font-size: 0.9em; color: #868e96; margin-top: 0;">
+        © 2025 在问 (zaiwen) 现代软件开发培训系列. All Rights Reserved.
+    </p>
+</footer>
+
+
+</body>
+</html>

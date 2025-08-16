@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代软件开发核心岗位培训系列 - 算法工程师篇</title>
+<style>
+    :root {
+        --math-color: #007bff; /* Math Blue */
+        --ml-color: #6f42c1;   /* Machine Learning Purple */
+        --eng-color: #fd7e14;  /* Engineering Orange */
+        --bg-color: #f8f9fa;
+        --text-color: #343a40;
+        --card-bg: #ffffff;
+        --border-color: #e9ecef;
+    }
+    body {
+        font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+        line-height: 1.9;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    header {
+        background: linear-gradient(135deg, #007bff, #6610f2, #fd7e14);
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+        margin: 0;
+        font-size: 2.8rem;
+        font-weight: 700;
+    }
+    header p {
+        margin: 15px 0 0;
+        font-size: 1.4rem;
+        opacity: 0.9;
+    }
+    main {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+    .part-title {
+        text-align: center;
+        margin: 60px 0 30px;
+        font-size: 2.2rem;
+        color: #495057;
+        font-weight: 300;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 15px;
+    }
+    details {
+        background: var(--card-bg);
+        border-radius: 10px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid var(--border-color);
+        transition: box-shadow 0.3s ease;
+    }
+    details[open] { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+    summary {
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 25px;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    summary.math-chapter { color: var(--math-color); }
+    summary.ml-chapter { color: var(--ml-color); }
+    summary.eng-chapter { color: var(--eng-color); }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '＋'; font-size: 2.2rem; transition: transform 0.3s; color: #adb5bd; }
+    details[open] > summary::after { transform: rotate(45deg); }
+    .content-wrapper { padding: 0 30px 30px; border-top: 1px solid var(--border-color); }
+    h3 { font-size: 1.3rem; margin-top: 35px; border-bottom: 2px solid #f1f3f5; padding-bottom: 10px; }
+    h4 { font-size: 1.1rem; margin-top: 25px; color: #495057; }
+    .box { padding: 20px; margin: 20px 0; border-left-width: 5px; border-left-style: solid; border-radius: 5px; }
+    .tip { background-color: #e6f7ff; border-color: var(--math-color); }
+    .example { background-color: #f3eef9; border-color: var(--ml-color); }
+    .key-concept { background-color: #fff3e6; border-color: var(--eng-color); }
+    .code-block { background: #2d2d2d; color: #f8f9fa; padding: 15px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; font-size: 0.9rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid var(--border-color); padding: 14px; text-align: left; }
+    th { background-color: #f8f9fa; font-weight: 600; }
+    .conclusion {
+        background: #e6f3f0;
+        border-left: 5px solid #0d5a67;
+        padding: 25px;
+        margin: 40px 0;
+        border-radius: 8px;
+    }
+    .diagram { text-align: center; padding: 20px; background-color: #f8f9fa; border-radius: 8px; margin: 20px 0; }
+    footer {
+        text-align: center;
+        padding: 40px;
+        margin-top: 50px;
+        color: #868e96;
+        background-color: #e9ecef;
+    }
+    @media (max-width: 768px) {
+        header h1 { font-size: 2.2rem; }
+        header p { font-size: 1.1rem; }
+        summary { font-size: 1.2rem; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>现代软件开发核心岗位培训系列</h1>
+    <p>从零到一，掌握构建卓越数字产品的全链路技艺</p>
+</header>
+
+<main>
+
+<div class="box key-concept" style="border-color: #6c757d;">
+    <h2>前言：欢迎加入城市数据情报局</h2>
+    <p>欢迎来到算法的世界！在本系列中，我们将一座卓越的软件产品比作一座宏伟的“数字城市”。而你，将是这座城市的“大脑”，是洞察现在、预测未来的**首席数据侦探**。</p>
+    <ul>
+        <li><strong>你的情报来源（The Data Scene）</strong>：是城市每日产生的海量、杂乱无章的**数据**。可能是市民的出行记录、商场的交易流水、交通网络的传感器读数……城市未来的发展蓝图就隐藏其中。</li>
+        <li><strong>你的侦探工具箱（The Detective's Toolkit）</strong>：是**数学知识**（帮你理解线索间的逻辑关系）、**编程语言**（如Python，帮你处理和分析线索）和**数据结构**（帮你高效地整理和查找线索）。</li>
+        <li><strong>你的破案方法论（The Investigation Method）</strong>：是各种**机器学习和深度学习模型**。面对不同类型的课题（预测交通流量、识别潜在流失市民、规划商业区），你需要选择合适的分析方法。</li>
+        <li><strong>你的最终目标（Solving the Case）</strong>：不仅仅是找到“规律”（构建一个高精度的模型），更是要撰写一份清晰的**情报报告**（模型部署与解读），让你的发现能够真正帮助“市政厅”（业务方）做出更明智的决策。</li>
+    </ul>
+    <p>本手册就是你的《数据侦探入门指南》，它将系统地教你如何使用科学的工具和方法，从纷繁的数据中发现真相，成为一名真正的“城市发展预测专家”。</p>
+</div>
+
+<h2 class="part-title">第一部分：侦探的工具箱 - 核心基础能力</h2>
+
+<details open>
+    <summary class="math-chapter">第 1 章：侦探的逻辑语言 - 数学基础</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解数学在算法中的核心作用，不是为了解题，而是为了拥有描述和解决问题的通用语言。</p>
+        
+        <h3>1.1 线性代数：数据的“GPS系统”</h3>
+        <p><strong>是什么：</strong>研究向量、矩阵、空间和线性变换的学科。</p>
+        <p><strong>为什么重要：</strong>在AI世界里，万物皆可为“向量”。一张图片、一句话、一个用户，都可以表示成一个高维空间中的点（向量）。线性代数就是操作这些点的规则，是模型进行计算的基础。</p>
+        <div class="tip box">
+            <strong>侦探笔记：</strong>想象一下，你要分析两位市民的电影偏好。
+            <ul>
+                <li>市民A的偏好向量: `[5, 1, 4]` (5分科幻, 1分爱情, 4分动作)</li>
+                <li>市民B的偏好向量: `[4, 2, 5]` (4分科幻, 2分爱情, 5分动作)</li>
+            </ul>
+            这两个向量在“电影品味空间”中代表了两个点。我们可以用线性代数计算他们的“相似度”（如余弦相似度），来判断他们的品味是否相近。这就是城市个性化推荐系统的基本原理之一。
+        </div>
+
+        <h3>1.2 概率论与统计：应对不确定性的艺术</h3>
+        <p><strong>是什么：</strong>研究随机现象规律性的科学。</p>
+        <p><strong>为什么重要：</strong>世界充满不确定性，数据也一样。概率论帮助我们量化这种不确定性，做出更可靠的推断。所有机器学习模型本质上都是在做概率预测。</p>
+        <div class="tip box">
+            <strong>侦探笔记：</strong>你发现“光顾了A商场的市民，有30%的概率会去B餐厅”，这就是**条件概率** `P(B|A)`。这个简单的发现，就是购物篮分析和商业区规划的核心。统计学中的均值、方差等工具，则能帮你快速了解一批“嫌疑人”（数据）的整体特征。
+        </div>
+
+        <h3>1.3 微积分：寻找最优解的“寻路者”</h3>
+        <p><strong>是什么：</strong>研究变化率（导数）和累积（积分）的学科。</p>
+        <p><strong>为什么重要：</strong>模型训练的过程，本质上就是在一个巨大的、充满山谷和山峰的“误差地形”中，寻找最低点的过程。这个最低点，就是模型的“最优解”。而**梯度下降（Gradient Descent）**算法，就是利用导数（梯度）这个工具，告诉我们应该朝哪个方向走才能最快下山。</p>
+        <div class="diagram">
+            <h4>梯度下降可视化</h4>
+            <div class="code-block" style="text-align: left; font-size: 1rem;">
+  误差 (Loss)
+    ^
+    |
+    |   \         * (当前位置, 误差很大)
+    |    \       / \
+    |     \     /   \
+    |      \   /     \
+    |       \ /       \
+    |--------V---------> 模型参数 (Weights)
+         (最优解, 误差最小)
+
+1.  <strong>定义误差函数(Loss Function):</strong> 衡量当前模型的预测与真实答案之间的差距。差距越大，误差越大，地势越高。
+2.  <strong>计算梯度(Gradient):</strong> 在当前位置，计算出哪个方向是“最陡峭的上坡方向”。梯度是一个向量，指向误差增大的方向。
+3.  <strong>更新参数:</strong> 我们要下山，所以要朝着梯度的**相反方向**走一小步。
+4.  <strong>学习率(Learning Rate):</strong> 这一小步的“步子大小”。步子太大可能会“跨过”山谷；太小则下山太慢。
+5.  <strong>重复:</strong> 不断重复2-4步，直到我们走到谷底（或附近），此时模型就训练好了。
+            </div>
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary class="math-chapter">第 2 章：侦探的笔记本 - Python与核心库</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握处理和分析“线索”（数据）的最强工具----Python及其三大核心库。</p>
+
+        <h3>2.1 NumPy：Python的“科学计算器”</h3>
+        <p>NumPy是Python进行数值计算的核心库。它提供了强大的多维数组对象（`ndarray`），运算速度远超原生的Python列表。所有的数据，最终都要转换成NumPy数组才能被模型处理。</p>
+        <div class="code-block">
+import numpy as np
+
+# 创建一个2x3的矩阵 (二维数组)
+matrix = np.array([[1, 2, 3], [4, 5, 6]])
+
+print("矩阵的形状:", matrix.shape) # 输出 (2, 3)
+
+# 访问元素 (第2行，第3列，注意索引从0开始)
+element = matrix[1, 2]
+print("矩阵[1, 2]的元素是:", element) # 输出 6
+
+# 矩阵转置
+print("转置后的矩阵:\n", matrix.T)
+        </div>
+
+        <h3>2.2 Pandas：数据的“瑞士军刀”</h3>
+        <p>Pandas提供了`DataFrame`对象，这是一个二维的、带标签的数据结构，就像一张Excel表格。它是数据清洗、处理、分析和探索的绝对主力。</p>
+        <div class="code-block">
+import pandas as pd
+
+# 假设我们有一个CSV文件 'user_data.csv'
+# 读取数据到DataFrame
+# df = pd.read_csv('user_data.csv')
+
+# (为了演示，我们手动创建一个)
+data = {'user_id': ['A01', 'A02', 'A03', 'A04'],
+        'age': [25, 34, 29, None], # 包含缺失值
+        'city': ['北京', '上海', '北京', '广州'],
+        'monthly_spend': [500, 1200, 800, 300],
+        'is_churned': [0, 0, 1, 0]}
+df = pd.DataFrame(data)
+
+# 数据清洗：处理缺失的年龄，用平均年龄填充
+mean_age = df['age'].mean()
+df['age'].fillna(mean_age, inplace=True)
+
+# 数据探索：按城市分组，计算每个城市的平均月消费
+avg_spend_by_city = df.groupby('city')['monthly_spend'].mean()
+print("各城市平均月消费:\n", avg_spend_by_city)
+        </div>
+
+        <h3>2.3 Matplotlib & Seaborn：线索的“可视化”</h3>
+        <p>一张图胜过千言万语。可视化是数据侦探发现线索、展示成果的关键技能。</p>
+        <div class="code-block">
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 绘制消费金额的分布直方图，了解消费水平的分布情况
+sns.histplot(df['monthly_spend'], kde=True)
+plt.title('用户月消费金额分布')
+plt.show()
+
+# 绘制箱形图，对比流失与未流失用户的消费差异
+sns.boxplot(x='is_churned', y='monthly_spend', data=df)
+plt.title('流失与未流失用户的消费对比')
+plt.xticks([0, 1], ['未流失', '已流失'])
+plt.show()
+        </div>
+        <p>通过第二张图，侦探可以得出一个假设：月消费金额较低或较高的用户，似乎都与流失行为有关，这值得深入调查。</p>
+    </div>
+</details>
+
+<h2 class="part-title">第二部分：侦探的破案方法论 - 核心算法技能</h2>
+
+<details>
+    <summary class="ml-chapter">第 3 章：经典侦破方法 - 机器学习</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解机器学习的核心思想，并掌握几种最经典、最常用的“破案”模型。</p>
+        <h3>3.1 核心思想：从过去的案件中学习</h3>
+        <p>机器学习的核心，就是让计算机从“已有的数据”（过去的案件）中自动学习出规律或模式（破案经验），然后用这个规律去预测“未来的数据”（新的案件）。</p>
+        
+        <h3>3.2 监督学习：有“标准答案”的案件</h3>
+        <p>在监督学习中，我们给机器的数据是带有“标签”或“答案”的。就像我们给侦探一堆已侦破的案件卷宗，告诉他哪些线索最终指向了“有罪”或“无罪”。</p>
+        <ul>
+            <li><strong>分类（Classification）：</strong>预测一个离散的标签。<strong>课题：</strong>“这位市民会流失还是不会流失？”。常用模型：逻辑回归、决策树、支持向量机（SVM）。</li>
+            <li><strong>回归（Regression）：</strong>预测一个连续的数值。<strong>课题：</strong>“这位市民未来一个月会消费多少钱？”。常用模型：线性回归。</li>
+        </ul>
+        <div class="example box">
+            <h4>案例：用Scikit-learn训练一个逻辑回归模型</h4>
+            <p>Scikit-learn是Python中最流行的机器学习库，让训练模型变得异常简单。</p>
+            <div class="code-block">
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# 假设df是我们的数据, X是特征(如age, monthly_spend), y是标签(is_churned)
+X = df[['age', 'monthly_spend']]
+y = df['is_churned']
+
+# 1. 拆分数据：80%做训练，20%做测试 (防止模型“背答案”)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 2. 创建并训练模型
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# 3. 在测试集上进行预测
+predictions = model.predict(X_test)
+
+# 4. 评估模型效果
+accuracy = accuracy_score(y_test, predictions)
+print(f"模型在测试集上的准确率是: {accuracy:.2f}")
+            </div>
+        </div>
+
+        <h3>3.3 无监督学习：没有“标准答案”的案件</h3>
+        <p>在无监督学习中，我们给机器的数据没有标签。侦探需要自己从一堆杂乱的线索中发现隐藏的模式或群体。</p>
+        <ul>
+            <li><strong>聚类（Clustering）：</strong>将相似的数据点分组。<strong>课题：</strong>“将我们的市民分成几个不同的群体（如‘高价值通勤族’、‘周末休闲党’、‘居家办公族’）？”。常用模型：K-Means。</li>
+        </ul>
+    </div>
+</details>
+
+<details>
+    <summary class="ml-chapter">第 4 章：尖端侦破技术 - 深度学习</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解深度学习（神经网络）的基本原理，及其在处理复杂线索（如图像、文本）时的巨大威力。</p>
+        <h3>4.1 核心思想：模仿大脑的“神经网络”</h3>
+        <p>深度学习的核心是人工神经网络。你可以把它想象成一个由许多“初级侦探”（神经元）组成的庞大团队。每个初级侦探只负责识别一个非常简单的模式（比如图像中的一条边，或一个角）。然后他们把自己的发现汇报给“高级侦探”（下一层神经元），高级侦探再根据下属的报告，识别出更复杂的模式（比如一只眼睛，或一个鼻子）。层层递进，最终“首席侦探”（输出层）就能识别出整张人脸。</p>
+        
+        <h3>4.2 核心模型架构</h3>
+        <ul>
+            <li><strong>卷积神经网络 (CNN):</strong> **图像分析专家**。特别擅长从图片中提取空间特征。就像一个侦探，拿着放大镜在照片上一点点地移动，寻找关键模式。</li>
+            <li><strong>循环神经网络 (RNN/LSTM):</strong> **时序线索分析专家**。特别擅长处理有先后顺序的数据，如文本或时间序列。它拥有“记忆力”，能记住前面看到了什么，并结合上下文进行判断。</li>
+            <li><strong>Transformer:</strong> **全局视野的战略家**。这是驱动ChatGPT等大语言模型的核心技术。它能同时关注到一句话中的所有词，理解它们之间复杂的关联，从而获得对上下文最深刻的理解。</li>
+        </ul>
+        <div class="example box">
+            <h4>用PyTorch/TensorFlow构建一个简单的神经网络</h4>
+            <p>PyTorch和TensorFlow是深度学习领域的两大主流框架。</p>
+            <div class="code-block">
+# PyTorch 示例
+import torch
+import torch.nn as nn
+
+# 定义一个简单的两层神经网络
+class SimpleNet(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(SimpleNet, self).__init__()
+        self.layer1 = nn.Linear(input_size, hidden_size) # 输入层到隐藏层
+        self.relu = nn.ReLU() # 激活函数
+        self.layer2 = nn.Linear(hidden_size, output_size) # 隐藏层到输出层
+    
+    def forward(self, x):
+        out = self.layer1(x)
+        out = self.relu(out)
+        out = self.layer2(out)
+        return out
+
+# 假设输入是2个特征，输出是1个结果（流失概率）
+model = SimpleNet(input_size=2, hidden_size=10, output_size=1)
+print(model)
+            </div>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第三部分：提交结案报告 - 工程实践与部署</h2>
+
+<details>
+    <summary class="eng-chapter">第 5 章：整理案卷 - 机器学习项目全流程</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握一个完整的机器学习项目从开始到结束的标准流程，确保工作科学、严谨、可复现。</p>
+        <p>一个成功的“案件”侦破，不是灵光一现，而是一套严谨的流程。</p>
+        <div class="diagram">
+            <h4>机器学习项目生命周期</h4>
+            <div class="code-block" style="font-size: 1rem; text-align: left;">
+1. 课题确立 (Problem Definition)
+   - 业务目标: 降低城市市民流失率10%。
+   - 算法问题: 构建一个二分类模型，预测未来7天内市民是否会流失。
+     ↓
+2. 情报收集 (Data Collection)
+   - 收集市民行为日志、消费数据、基本信息等。
+     ↓
+3. 线索分析 (Exploratory Data Analysis - EDA)
+   - 数据清洗、可视化分析，发现潜在规律 (如我们之前做的图)。
+     ↓
+4. 证据整理 (Feature Engineering)
+   - 提取关键特征，如“最近登录距今天数”、“平均消费金额”等。
+     ↓
+5. 方法选择与演练 (Model Training)
+   - 拆分训练集/测试集，选择多种模型（逻辑回归、XGBoost等）进行训练。
+     ↓
+6. 效果评估 (Model Evaluation)
+   - 使用精确率、召回率、AUC等指标，在测试集上评估模型效果，选出最优模型。
+     ↓
+7. 提交报告 (Model Deployment & Monitoring)
+   - 将模型部署成API服务，并持续监控其线上表现。
+            </div>
+        </div>
+        <h3>深入“效果评估”：如何判断模型的好坏？</h3>
+        <p>准确率（Accuracy）并不总是最好的指标。对于流失预测这类“不平衡”的案件（流失市民远少于非流失市民），我们需要更精细的评估工具。</p>
+        <ul>
+            <li><strong>混淆矩阵 (Confusion Matrix):</strong> 评估模型所有判罚情况的表格。</li>
+            <li><strong>精确率 (Precision):</strong> 在所有被模型预测为“会流失”的市民里，有多少是真的流失了？（宁缺毋滥，避免打扰正常市民）</li>
+            <li><strong>召回率 (Recall):</strong> 在所有真正流失的市民里，模型成功找出了多少？（宁可错杀，不可放过，尽力挽回所有可能流失的市民）</li>
+            <li><strong>F1分数:</strong> 精确率和召回率的调和平均，一个综合性指标。</li>
+        </ul>
+    </div>
+</details>
+
+<details>
+    <summary class="eng-chapter">第 6 章：让成果落地 - 模型部署与MLOps入门</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解模型部署的基本概念，让你的模型能被其他人使用。</p>
+        <h3>6.1 模型部署：从代码到服务</h3>
+        <p>你训练好的模型，如果只停留在你的电脑里，就毫无价值。部署，就是把它包装成一个稳定、可靠的**API服务**，让其他程序（如公司的业务后台、前端页面）可以通过网络来调用它，获取预测结果。</p>
+        <div class="example box">
+            <h4>用Docker打包我们的API服务</h4>
+            <p>Docker可以把你的应用和它所有的依赖（Python、Flask、Scikit-learn等）打包成一个独立的“集装箱”，无论在哪台服务器上运行，环境都一模一样，彻底告别“在我电脑上明明是好的”这类问题。</p>
+            <p>一个简单的 `Dockerfile` 文件：</p>
+            <div class="code-block">
+# 1. 使用官方的Python 3.9作为基础镜像
+FROM python:3.9-slim
+
+# 2. 设置工作目录
+WORKDIR /app
+
+# 3. 复制依赖文件和应用代码到容器里
+COPY requirements.txt .
+COPY app.py .
+COPY churn_model.pkl .
+
+# 4. 安装所有依赖
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 5. 容器启动时要执行的命令
+CMD ["python", "app.py"]
+            </div>
+        </div>
+
+        <h3>6.2 MLOps：让模型开发和运维自动化</h3>
+        <p>MLOps = Machine Learning + DevOps。它是一套方法论和工具，旨在将模型的开发、部署和监控流程自动化、标准化，提高效率和可靠性。对于初学者，除了Git和Docker，还应了解CI/CD（持续集成/持续部署）的概念，例如使用GitHub Actions，可以在你每次提交代码后，自动测试并部署你的模型服务。</p>
+    </div>
+</details>
+
+<div class="conclusion">
+    <h2>结语：开启你的数据洞察之旅</h2>
+    <p>恭喜你，未来的首席数据侦探！你已经完成了本课程的学习，掌握了成为一名“数字城市”情报分析师所需的核心工具、方法论和实践流程。你学会了如何从城市的海量数据中提取有价值的情报，并利用模型的力量去预测和塑造城市的未来。</p>
+    <p>但一名伟大的侦探，不仅要技艺高超，更要心怀准则。在你的职业生涯中，请时刻牢记**AI伦理**：</p>
+    <ul>
+        <li><strong>数据是否存在偏见？</strong> 如果只用富裕地区的数据训练模型，它可能会歧视贫困地区的用户。</li>
+        <li><strong>模型是否透明可释？</strong> 我能否解释为什么模型做出了这样的判断？</li>
+        <li><strong>是否保护了市民的隐私？</strong> 在数据使用和模型部署中，是否遵循了隐私保护的法规？</li>
+    </ul>
+    <p>技术在飞速发展，新的“案件”和“侦破工具”（如大语言模型）层出不穷。保持好奇心，终身学习，是你作为一名数据侦探最重要的品质。现在，合上这本指南，开始你的第一次“探案”吧！</p>
+</div>
+
+</main>
+
+<footer>
+    <p style="font-size: 1.1em; font-weight: 500; color: #495057; margin-bottom: 10px;">
+        本系列课程由 <strong>许展玮 (Lupin)</strong> 倾力打造
+    </p>
+    <p style="font-size: 0.9em; color: #868e96; margin-top: 0;">
+        © 2025 在问 (zaiwen) 现代软件开发培训系列. All Rights Reserved.
+    </p>
+</footer>
+
+</body>
+</html>

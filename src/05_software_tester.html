@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代软件开发核心岗位培训系列 - 软件测试篇</title>
+<style>
+    :root {
+        --primary-color: #005f73;
+        --secondary-color: #0a9396;
+        --accent-color: #94d2bd;
+        --text-color: #333;
+        --bg-color: #f8f9fa;
+        --header-bg: #001219;
+        --header-text: #e9d8a6;
+        --card-bg: #ffffff;
+        --border-color: #dee2e6;
+    }
+    body {
+        font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+        line-height: 1.8;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    header {
+        background: linear-gradient(135deg, #007bff, #6610f2, #fd7e14);
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+        margin: 0;
+        font-size: 2.8rem;
+        font-weight: 700;
+    }
+    header p {
+        margin: 15px 0 0;
+        font-size: 1.4rem;
+        opacity: 0.9;
+    }
+    main {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+    details {
+        background: var(--card-bg);
+        border-radius: 8px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+    details[open] {
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    summary {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        padding: 20px;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+        content: '+';
+        font-size: 2rem;
+        color: var(--secondary-color);
+        transition: transform 0.3s ease;
+    }
+    details[open] summary::after {
+        transform: rotate(45deg);
+    }
+    .content-wrapper {
+        padding: 0 20px 20px 20px;
+    }
+    h3 {
+        color: var(--secondary-color);
+        margin-top: 30px;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 5px;
+    }
+    .box {
+        padding: 15px;
+        margin: 15px 0;
+        border-left-width: 5px;
+        border-left-style: solid;
+        border-radius: 5px;
+    }
+    .tip {
+        background-color: #e6f7ff;
+        border-color: #91d5ff;
+    }
+    .example {
+        background-color: #f9f0ff;
+        border-color: #d3adf7;
+    }
+    .warning {
+        background-color: #fffbe6;
+        border-color: #ffe58f;
+    }
+    .code-block {
+        background: #2d2d2d;
+        color: #f1f1f1;
+        padding: 15px;
+        border-radius: 5px;
+        font-family: 'Courier New', Courier, monospace;
+        white-space: pre-wrap;
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    table, th, td {
+        border: 1px solid var(--border-color);
+    }
+    th, td {
+        padding: 12px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .checklist {
+        background-color: #f0fff0;
+        border: 1px solid #a3d9a5;
+        padding: 15px;
+        border-radius: 5px;
+    }
+    .conclusion {
+        background: #e6f3f0;
+        border-left: 5px solid #0d5a67;
+        padding: 25px;
+        margin: 40px 0;
+        border-radius: 8px;
+    }
+    footer {
+        text-align: center;
+        padding: 40px;
+        margin-top: 40px;
+        color: #868e96;
+        background-color: #e9ecef;
+    }
+    @media (max-width: 768px) {
+        header h1 { font-size: 2.2rem; }
+        header p { font-size: 1.1rem; }
+        summary { font-size: 1.2rem; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>现代软件开发核心岗位培训系列</h1>
+    <p>从零到一，掌握构建卓越数字产品的全链路技艺</p>
+</header>
+
+<main>
+
+<details open>
+    <summary>第 1 章：欢迎来到测试世界 (基础概念)</summary>
+    <div class="content-wrapper">
+        <h3>1.1 什么是软件测试？ (通俗解释)</h3>
+        <p>想象你是一位“数字城市”的<strong>首席质检官</strong>。城市里新建了一座图书馆（一个新功能模块），在它对市民（用户）开放之前，你的任务不是去设计或建造它，而是通过“全面检查”（运行软件）、“压力测试”（观察功能表现）、“提交报告”（报告问题），来确保这座图书馆的结构是安全的、功能是完善的、符合设计蓝图的。</p>
+        <p><strong>专业定义</strong>：软件测试是一个为了发现软件中的错误（缺陷或Bug）而执行程序或系统的过程。它的目的在于验证软件产品是否满足预定的需求，以及确认其质量。</p>
+        <div class="tip box">
+            <strong>核心思想：</strong> 我们测试，是为了找到问题，而不是证明“没有问题”。找不到问题不代表它不存在，可能只是我们没用对方法。作为质检官，你的天职就是发现隐患。
+        </div>
+
+        <h3>1.2 为什么测试如此重要？</h3>
+        <ul>
+            <li><strong>保证质量，提升市民满意度</strong>：没人喜欢住在一座电梯频繁故障、水管经常爆裂的城市里。好的测试能确保市民生活得舒心。</li>
+            <li><strong>降低建设成本</strong>：在建筑图纸阶段发现一个设计错误，修改成本可能只是一支铅笔和一块橡皮。如果等大楼建好后再发现承重墙有问题，返工成本将是天价。</li>
+            <li><strong>规避灾难性风险</strong>：想象一下城市供水系统的计算错误、医院急救系统的软件失灵，这些后果是灾难性的。测试是城市安全的最后一道防线。</li>
+        </ul>
+
+        <h3>1.3 两个重要概念：验证 (Verification) vs 确认 (Validation)</h3>
+        <div class="example box">
+            <strong>场景：</strong> 市政规划要求建造一个“红色的、直径5米的圆形喷泉”。
+            <ul>
+                <li><strong>验证 (Verification)</strong>：“我们是不是正确地‘建造’了这个产品？” —— 施工队检查图纸，确保喷泉的颜色是红色(#FF0000)，直径是5米，形状是圆形。这是确保过程的正确性，确保“把事做对”。</li>
+                <li><strong>确认 (Validation)</strong>：“我们建造的产品是不是市民想要的？” —— 质检官和市民代表来验收，发现喷泉虽然长得对，但喷出的水又小又黄，根本没有观赏性。这说明产品没有满足最终需求。这是确保结果的有效性，确保“做了对的事”。</li>
+            </ul>
+        </div>
+
+        <h3>1.4 测试的七大黄金原则 (帮你建立正确心态)</h3>
+        <ol>
+            <li><strong>测试证明缺陷存在</strong>：测试只能告诉你“这座楼的3层有裂缝”，但不能告诉你“这座楼绝对没有任何裂缝”。</li>
+            <li><strong>穷尽测试是不可能的</strong>：要测试一座大楼的每一个螺丝钉在所有天气下的表现吗？不可能。所以我们需要聪明的方法（见第4章）。</li>
+            <li><strong>测试尽早介入</strong>：在图纸评审阶段就发现一个结构问题，比大楼建完再改要省事得多。</li>
+            <li><strong>缺陷集群现象</strong>：城市中80%的治安问题，往往集中在20%的街区。找到这些“重灾区”，重点巡查。</li>
+            <li><strong>杀虫剂悖论</strong>：总用同一种方法巡逻，罪犯会找到规律。总用同一批测试用例，就很难发现新的Bug。要定期更新和评审你的测试用例。</li>
+            <li><strong>测试活动依赖于具体内容</strong>：测试一座核电站和测试一个街心公园，方法和标准天差地别。</li>
+            <li><strong>“没有错误”的谬论</strong>：即使你修复了所有Bug，但如果这座图书馆设计得像迷宫，市民根本不想用，那它依然是个失败的建筑。</li>
+        </ol>
+
+        <div class="checklist">
+            <h4>第一章自查清单</h4>
+            <ul>
+                <li>我能用“城市质检官”的比喻来解释什么是软件测试吗？</li>
+                <li>我知道为什么要在建筑对市民开放前进行测试吗？</li>
+                <li>我能举例说明“验证”和“确认”的区别吗？</li>
+                <li>“杀虫剂悖论”提醒我在工作中应该注意什么？</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary>第 2 章：测试在项目中的位置 (流程与模型)</summary>
+    <div class="content-wrapper">
+        <h3>2.1 常见的软件开发模型</h3>
+        <p>开发模型就像盖房子的流程，不同的流程决定了测试什么时候介入，以及如何工作。</p>
+        <ul>
+            <li><strong>瀑布模型 (Waterfall)</strong>：像瀑布一样，从上到下，一个阶段完成了再到下一个。规划 -> 设计 -> 施工 -> 质检 -> 交付。
+                <div class="warning box"><strong>测试痛点：</strong> 质检在非常后期才介入，如果早期规划或设计有误，返工成本极高。</div>
+            </li>
+            <li><strong>V模型 (V-Model)</strong>：是瀑布模型的改良，强调了质检与建设的对应关系。
+                <div class="code-block">
+市政规划  <------> 市民验收测试
+建筑设计  <------> 系统功能测试
+模块设计  <------> 模块集成测试
+编码施工  <------> 单元组件测试
+                </div>
+                <div class="tip box"><strong>测试优点：</strong> 每个建设阶段都有一个测试阶段与之对应，有利于尽早发现问题。</div>
+            </li>
+            <li><strong>敏捷模型 (Agile)</strong>：现在最流行的模式。把整个城市建设拆分成很多个小的“街区”来开发（通常2-4周），每个街区交付时都是功能完善的。
+                <div class="tip box"><strong>测试特点：</strong> 测试贯穿始终，每个小街区交付时都要测试。要求测试人员反应快，和开发、产品紧密协作。回归测试非常重要。</div>
+            </li>
+        </ul>
+
+        <h3>2.2 软件测试生命周期 (STLC) - 我们质检官的行动指南</h3>
+        <p>这是一个规范化的流程，指导我们从头到尾如何科学地搞测试。</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>阶段</th>
+                    <th>主要活动 (做什么？)</th>
+                    <th>产出物 (得到什么？)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. 需求分析</strong></td>
+                    <td>阅读建筑蓝图，理解功能，提出疑问，识别模糊点。</td>
+                    <td>需求疑问列表，测试点（Test Point）脑图。</td>
+                </tr>
+                <tr>
+                    <td><strong>2. 测试计划</strong></td>
+                    <td>确定测试范围、目标、资源、时间安排、风险等。</td>
+                    <td>《测试计划》文档。</td>
+                </tr>
+                <tr>
+                    <td><strong>3. 测试用例设计</strong></td>
+                    <td>根据测试点，使用各种方法（见第4章）编写详细的检测步骤。</td>
+                    <td>《测试用例》文档/集合。</td>
+                </tr>
+                <tr>
+                    <td><strong>4. 测试环境搭建</strong></td>
+                    <td>准备测试所需的硬件、软件、网络、测试账号和数据。</td>
+                    <td>一个可用的测试环境。</td>
+                </tr>
+                <tr>
+                    <td><strong>5. 测试执行</strong></td>
+                    <td>运行测试用例，记录实际结果，与预期结果比较。</td>
+                    <td>带有执行结果（通过/失败）的测试用例记录。</td>
+                </tr>
+                <tr>
+                    <td><strong>6. 缺陷管理</strong></td>
+                    <td>将不合格项报告为缺陷（Bug），并跟踪其修复过程（见第5章）。</td>
+                    <td>缺陷报告。</td>
+                </tr>
+                 <tr>
+                    <td><strong>7. 测试报告与总结</strong></td>
+                    <td>当测试结束时，分析测试过程、缺陷数据，评估建筑质量。</td>
+                    <td>《测试报告》文档。</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="checklist">
+            <h4>第二章自查清单</h4>
+            <ul>
+                <li>我知道敏捷开发中，测试工作有什么特点吗？</li>
+                <li>我能按顺序列出软件测试的完整流程（STLC）吗？</li>
+                <li>在编写测试用例之前，我应该先做什么？</li>
+                <li>测试执行阶段的主要任务是什么？</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary>第 3 章：测试的分类 (从不同角度看测试)</summary>
+    <div class="content-wrapper">
+        <h3>3.1 按测试阶段/级别划分 (从下到上)</h3>
+        <p>这就像检查一辆汽车，从检查每个螺丝钉，到组装好的引擎，再到整车上路。</p>
+        <div class="tip box">这通常被称为“测试金字塔”模型，强调底层测试（单元、集成）要多，高层（UI）要少而精。</div>
+        <ul>
+            <li><strong>单元测试</strong>：由<strong>开发人员</strong>执行，测试最小的代码单元（如一个函数、一块砖）是否工作正常。</li>
+            <li><strong>集成测试</strong>：由<strong>开发或测试人员</strong>执行，测试多个单元模块组合在一起时（如一面墙），接口和交互是否正确。</li>
+            <li><strong>系统测试</strong>：由<strong>测试人员</strong>在完整的系统环境下执行，验证整个软件（一整栋楼）是否符合需求规格。这是我们质检官的主要工作范畴。</li>
+            <li><strong>验收测试 (UAT)</strong>：由<strong>最终用户或客户</strong>执行，确认软件是否能满足他们的实际业务需求，是否可以交付使用。</li>
+        </ul>
+
+        <h3>3.2 按是否查看代码划分</h3>
+        <ul>
+            <li><strong>黑盒测试</strong>：不关心建筑内部的钢筋水泥结构，只关心“按下电梯按钮，是否能到达指定楼层”。把软件当成一个黑盒子。我们大部分功能测试都是黑盒测试。</li>
+            <li><strong>白盒测试</strong>：需要查看和理解建筑图纸（代码），检查内部的线路、管道是否都覆盖到了。通常由开发人员或专门的白盒测试工程师执行。</li>
+            <li><strong>灰盒测试</strong>：介于黑白之间。质检官不一定看懂所有图纸，但会利用一些对内部结构的了解（如数据库表结构）来设计更深入的测试。</li>
+        </ul>
+
+        <h3>3.3 按测试目的划分 (其他常见类型)</h3>
+        <ul>
+            <li><strong>功能测试</strong>：验证软件的功能是否符合需求。</li>
+            <li><strong>性能测试</strong>：软件在不同负载下的响应速度、稳定性和资源消耗情况如何？（见第8章）</li>
+            <li><strong>安全测试</strong>：软件是否存在漏洞，容易被攻击？</li>
+            <li><strong>兼容性测试</strong>：软件在不同的操作系统、浏览器、屏幕分辨率下是否都能正常工作？</li>
+            <li><strong>回归测试</strong>：为了修复一个窗户的漏风问题，有没有把承重墙弄出裂缝？回归测试就是为了回答这个问题。</li>
+        </ul>
+        <div class="checklist">
+            <h4>第三章自查清单</h4>
+            <ul>
+                <li>我作为功能测试工程师，主要负责哪个阶段的测试？</li>
+                <li>什么是黑盒测试？我需要看代码吗？</li>
+                <li>当开发修复了一个Bug后，我需要做什么测试来确保没有引入新问题？</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary>第 4 章：核心技能：测试用例设计 (实战演练)</summary>
+    <div class="content-wrapper">
+        <p>这是测试工程师最重要的核心技能！好的用例能用最少的数量，覆盖最广的场景，发现最多的问题。</p>
+        <div class="example box">
+            <h4>贯穿本章的实战案例</h4>
+            <p><strong>需求：</strong>一个图书馆的门禁系统，要求进入者年龄必须在 <strong>18到60岁</strong> 之间（包含18和60）。</p>
+        </div>
+
+        <h3>4.1 等价类划分法 (最常用)</h3>
+        <p><strong>思想：</strong> 把无数的测试数据，划分为几个有代表性的“类”，每个类里只取一个数据测试，就等同于测试了这类所有数据。</p>
+        <p>针对年龄输入框，我们可以这样划分：</p>
+        <ul>
+            <li><strong>有效等价类</strong> (符合要求的)：18到60之间的任意整数。我们取一个代表，如：`30`。</li>
+            <li><strong>无效等价类</strong> (不符合要求的)：
+                <ul>
+                    <li>小于18的数。取一个代表，如：`17`。</li>
+                    <li>大于60的数。取一个代表，如：`61`。</li>
+                    <li>非数字。取一个代表，如：`"A"`。</li>
+                    <li>小数。取一个代表，如：`25.5`。</li>
+                    <li>空值。不输入任何内容。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>4.2 边界值分析法 (等价类的补充)</h3>
+        <p><strong>思想：</strong> 大量错误都发生在“边界”上，所以要特别关照这些边界值。</p>
+        <p>针对年龄输入框，边界是18和60。我们需要测试：</p>
+        <ul>
+            <li><strong>正好在边界上</strong>：`18`, `60`</li>
+            <li><strong>刚好越过边界</strong>：`17` (小于18的边界), `61` (大于60的边界)</li>
+            <li><strong>紧邻边界内侧</strong>：`19`, `59` (有时也需要考虑)</li>
+        </ul>
+        <div class="tip box"><strong>最佳实践：</strong> 通常将等价类和边界值结合使用，可以设计出高效的用例组合。</div>
+
+        <h3>4.3 判定表法 (适用于多条件组合场景)</h3>
+        <p><strong>思想：</strong> 当一个功能有多个输入条件，不同的条件组合会导致不同结果时，用一个表格来理清所有逻辑，避免遗漏。</p>
+        <div class="example box">
+            <strong>场景：</strong> 论坛发帖，规则如下：1. 必须登录；2. 标题不能为空；3. 内容不能为空。
+            <p><strong>判定表：</strong></p>
+            <table>
+                <tr><th>条件</th><th>规则1</th><th>规则2</th><th>规则3</th><th>规则4</th><th>...</th></tr>
+                <tr><td>已登录?</td><td>是</td><td>是</td><td>是</td><td>否</td><td>...</td></tr>
+                <tr><td>标题非空?</td><td>是</td><td>是</td><td>否</td><td>(不关心)</td><td>...</td></tr>
+                <tr><td>内容非空?</td><td>是</td><td>否</td><td>(不关心)</td><td>(不关心)</td><td>...</td></tr>
+                <tr><th>动作</th><th colspan="4"></th><th>...</th></tr>
+                <tr><td>发帖成功</td><td>✓</td><td></td><td></td><td></td><td>...</td></tr>
+                <tr><td>提示内容为空</td><td></td><td>✓</td><td></td><td></td><td>...</td></tr>
+                <tr><td>提示标题为空</td><td></td><td></td><td>✓</td><td></td><td>...</td></tr>
+                <tr><td>跳转到登录页</td><td></td><td></td><td></td><td>✓</td><td>...</td></tr>
+            </table>
+        </div>
+
+        <h3>4.4 场景法/流程分析法</h3>
+        <p><strong>思想：</strong> 模拟市民实际使用时的操作流程，把一个个孤立的功能点串联起来，验证业务流程的正确性。</p>
+        <div class="example box">
+            <strong>场景：</strong> 一个典型的线上图书馆借书流程。
+            <p><strong>测试场景用例：</strong></p>
+            <ol>
+                <li>市民登录系统。</li>
+                <li>在搜索框搜索“软件测试”。</li>
+                <li>将第一本搜索结果加入借阅车。</li>
+                <li>进入借阅车，确认借阅信息。</li>
+                <li>选择取书分馆。</li>
+                <li>提交借阅单，预约成功。</li>
+                <li>在“我的借阅”中查看状态是否为“待取书”。</li>
+            </ol>
+        </div>
+        
+        <h3>4.5 测试用例模板</h3>
+        <p>一个好的测试用例应该包含以下元素：</p>
+        <table>
+            <tr><th>用例ID</th><td>TC_Register_001</td></tr>
+            <tr><th>模块</th><td>用户注册</td></tr>
+            <tr><th>标题</th><td>年龄输入框 - 输入有效边界值18</td></tr>
+            <tr><th>前置条件</th><td>已打开注册页面</td></tr>
+            <tr><th>操作步骤</th><td>1. 在年龄输入框输入"18"<br>2. 填写其他所有必填项<br>3. 点击“注册”按钮</td></tr>
+            <tr><th>预期结果</th><td>注册成功，页面跳转到个人中心。</td></tr>
+            <tr><th>实际结果</th><td>(执行时填写)</td></tr>
+            <tr><th>状态</th><td>(未执行/通过/失败)</td></tr>
+        </table>
+
+        <div class="checklist">
+            <h4>第四章自查清单</h4>
+            <ul>
+                <li>对于一个有范围要求的输入框，我知道要用哪两种方法来设计用例吗？</li>
+                <li>当一个功能有多个条件组合时，我应该用什么方法来保证覆盖全面？</li>
+                <li>什么是场景法？它和普通的功能测试有什么不同？</li>
+                <li>我能说出一个标准测试用例包含哪些关键信息吗？</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary>第 5 章：发现宝藏：缺陷管理</summary>
+    <div class="content-wrapper">
+        <h3>5.1 什么是缺陷 (Bug)？</h3>
+        <p>任何不符合建筑蓝图、安全规范或市民合理期望的问题，都是缺陷。例如：</p>
+        <ul>
+            <li>软件未实现需求规格说明书要求的功能。</li>
+            <li>软件功能超出需求范围（画蛇添足）。</li>
+            <li>软件出现错误，如崩溃、闪退、计算错误。</li>
+            <li>软件性能低下，响应缓慢。</li>
+            <li>软件界面丑陋，操作反人类，文案有错别字。</li>
+        </ul>
+
+        <h3>5.2 如何写一个高质量的缺陷报告</h3>
+        <p>一个好的缺陷报告能让施工队（开发人员）快速定位问题，而不是来回找你确认。目标是：<strong>清晰、准确、完整、可复现</strong>。</p>
+        <div class="example box">
+            <h4>缺陷报告模板</h4>
+            <p><strong>标题：</strong>【功能模块】在何种情况下，发生了什么问题。<br><em>示例：【用户中心-修改头像】上传非图片格式文件时，页面崩溃，提示500错误。</em></p>
+            <hr>
+            <p><strong>所属项目/模块：</strong> XXX项目 / 用户中心</p>
+            <p><strong>测试环境：</strong></p>
+            <ul>
+                <li>操作系统：Windows 11</li>
+                <li>浏览器：Chrome 127.0.2</li>
+                <li>测试服务器地址：http://test.example.com</li>
+                <li>测试账号：tester01 / 123456</li>
+            </ul>
+            <hr>
+            <p><strong>前置条件：</strong></p>
+            <ol>
+                <li>用户已成功登录系统。</li>
+                <li>用户已进入“修改个人资料”页面。</li>
+            </ol>
+            <hr>
+            <p><strong>重现步骤 (Step-by-Step)：</strong></p>
+            <ol>
+                <li>点击“上传头像”按钮。</li>
+                <li>在文件选择弹窗中，选择一个`.txt`或`.pdf`文件。</li>
+                <li>点击“确定”上传。</li>
+                <li><strong>观察页面反应。</strong></li>
+            </ol>
+            <hr>
+            <p><strong>实际结果：</strong></p>
+            <p>页面白屏，浏览器F12开发者工具显示服务器返回500 Internal Server Error。</p>
+            <hr>
+            <p><strong>预期结果：</strong></p>
+            <p>页面应给出友好提示，如“上传失败，请选择图片格式的文件（如JPG, PNG）”，并且页面不应崩溃。</p>
+            <hr>
+            <p><strong>附件：</strong></p>
+            <ul>
+                <li>[附件1] 页面崩溃截图.png</li>
+                <li>[附件2] F12网络请求截图.png</li>
+                <li>[附件3] 相关日志.log (如果能获取到)</li>
+            </ul>
+            <hr>
+            <p><strong>严重性 (Severity)：</strong> Blocker / Critical / Major / Minor / Trivial<br><em>(此例为 Major，因为它导致了页面崩溃)</em></p>
+            <p><strong>优先级 (Priority)：</strong> High / Medium / Low<br><em>(此例为 High，因为影响了核心功能且体验差)</em></p>
+        </div>
+        <div class="tip box">
+            <strong>严重性 vs 优先级</strong>
+            <ul>
+                <li><strong>严重性</strong>：指缺陷对建筑结构安全的影响程度。技术层面的。</li>
+                <li><strong>优先级</strong>：指修复这个缺陷的紧急程度。业务层面的。</li>
+                <li><strong>例子</strong>：市政府大楼门口的公司Logo印错了，严重性很低(Trivial)，但优先级可能很高(High)，因为影响城市形象。</li>
+            </ul>
+        </div>
+        <h3>5.3 缺陷的生命周期</h3>
+        <p>一个缺陷从被发现到最终关闭的旅程。</p>
+        <div class="code-block">
+新建 (New) -> 指派 (Assigned) -> 打开 (Open) -> 已修复 (Fixed) ->
+  ^                                                       |
+  |                                                       v
+拒绝 (Rejected) <------------------------------------ 回归测试 (Retesting) -> 关闭 (Closed)
+  |                                                       |
+  +-----------------------------------------------------> 重新打开 (Reopened)
+        </div>
+        <ul>
+            <li><strong>New:</strong> 质检官发现并提交，等待负责人处理。</li>
+            <li><strong>Assigned:</strong> 负责人将缺陷指派给对应的施工队。</li>
+            <li><strong>Fixed:</strong> 施工队修复了问题，并将状态置为Fixed。</li>
+            <li><strong>Retesting:</strong> 质检官在下一个版本中对该问题进行回归测试。</li>
+            <li><strong>Closed:</strong> 质检官确认问题已修复，关闭缺陷。</li>
+            <li><strong>Reopened:</strong> 质检官发现问题未修复或引入了新问题，重新打开。</li>
+            <li><strong>Rejected:</strong> 施工队认为这不是一个问题（如：设计如此、环境问题），并给出理由。</li>
+        </ul>
+        <div class="checklist">
+            <h4>第五章自查清单</h4>
+            <ul>
+                <li>一个高质量的缺陷报告应该具备哪些要素？</li>
+                <li>我能区分“严重性”和“优先级”吗？</li>
+                <li>当开发人员告诉我一个Bug修好了，我的下一步是什么？</li>
+                <li>如果我回归测试时发现Bug还在，我应该怎么操作？</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary>第 6 章：我们的武器库 (常用工具)</summary>
+    <div class="content-wrapper">
+        <p>工欲善其事，必先利其器。以下是质检官的日常必备工具。</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>工具类别</th>
+                    <th>常用工具</th>
+                    <th>核心作用</th>
+                    <th>一句话点评</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>项目/缺陷管理</strong></td>
+                    <td>Jira, 禅道, Trello</td>
+                    <td>管理需求、任务和缺陷的生命周期。</td>
+                    <td>团队协作的“大脑中枢”。</td>
+                </tr>
+                <tr>
+                    <td><strong>测试用例管理</strong></td>
+                    <td>TestRail, Zephyr, Excel</td>
+                    <td>编写、管理、执行测试用例，并生成报告。</td>
+                    <td>测试工作的“弹药库”。</td>
+                </tr>
+                <tr>
+                    <td><strong>API 接口测试</strong></td>
+                    <td>Postman, Apifox, Insomnia</td>
+                    <td>绕过前端界面，直接测试后端接口的功能和数据。</td>
+                    <td>能更早、更深入地发现后端问题。</td>
+                </tr>
+                <tr>
+                    <td><strong>Web 自动化测试</strong></td>
+                    <td>Selenium, Cypress, Playwright</td>
+                    <td>编写脚本来模拟用户操作浏览器，实现自动化回归测试。</td>
+                    <td>把我们从重复的“点点点”中解放出来。</td>
+                </tr>
+                <tr>
+                    <td><strong>性能测试</strong></td>
+                    <td>JMeter, LoadRunner, Locust</td>
+                    <td>模拟大量用户同时访问，测试系统的承压能力。</td>
+                    <td>防止系统在“双十一”时崩溃。</td>
+                </tr>
+                <tr>
+                    <td><strong>版本控制</strong></td>
+                    <td>Git, SVN</td>
+                    <td>管理代码和文档的版本，方便协作和追溯。</td>
+                    <td>程序员的“时光机”，测试人员也需要懂。</td>
+                </tr>
+                <tr>
+                    <td><strong>数据库工具</strong></td>
+                    <td>Navicat, DBeaver, DataGrip</td>
+                    <td>连接数据库，查看和校验后台数据是否正确。</td>
+                    <td>验证“眼见为实”背后的数据真相。</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="checklist">
+            <h4>第六章自查清单</h4>
+            <ul>
+                <li>我应该用什么工具来提交和跟踪我发现的Bug？</li>
+                <li>我想测试一个登录接口是否工作正常，用什么工具最方便？</li>
+                <li>我想验证用户注册后，数据库里是否真的插入了一条新用户数据，我该用什么工具？</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<div class="conclusion">
+    <h2>结语：开启你的城市守护之旅</h2>
+    <p>恭喜你，未来的首席质检官！你已经完成了本课程的学习，掌握了守护一座“数字城市”质量安全所需的核心知识和技能。你学会了如何像一位严谨的工程师一样思考，如何使用科学的方法和工具，去发现那些隐藏在代码深处的微小裂缝，防止它们演变成巨大的灾难。</p>
+    <p>请记住，你的角色至关重要。正是因为有了你和你的团队日复一日的严格把关，市民们才能在这座数字城市中安心地生活、工作和娱乐。现在，合上这本手册，带上你的工具箱，开始你守护城市质量与安全的光荣使命吧！</p>
+</div>
+
+</main>
+
+<footer>
+    <p style="font-size: 1.1em; font-weight: 500; color: #495057; margin-bottom: 10px;">
+        本系列课程由 <strong>许展玮 (Lupin)</strong> 倾力打造
+    </p>
+    <p style="font-size: 0.9em; color: #868e96; margin-top: 0;">
+        © 2025 在问 (zaiwen) 现代软件开发培训系列. All Rights Reserved.
+    </p>
+</footer>
+
+</body>
+</html>

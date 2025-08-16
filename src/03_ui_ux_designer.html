@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代软件开发核心岗位培训系列 - UI/UX设计师篇</title>
+<style>
+    :root {
+        --ux-color: #0077b6; /* UX Process Blue */
+        --ui-color: #8a4baf; /* UI Visual Purple */
+        --shared-color: #4a934a; /* Shared Green */
+        --bg-color: #f8f9fa;
+        --text-color: #343a40;
+        --card-bg: #ffffff;
+        --border-color: #e9ecef;
+    }
+    body {
+        font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+        line-height: 1.9;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    header {
+        background: linear-gradient(135deg, var(--ux-color), var(--ui-color));
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    header h1 { margin: 0; font-size: 2.8rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+    header p { margin: 10px 0 0; font-size: 1.2rem; opacity: 0.9; }
+    main { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+    .part-title {
+        text-align: center;
+        margin: 60px 0 30px;
+        font-size: 2.2rem;
+        color: #495057;
+        font-weight: 300;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 15px;
+    }
+    details {
+        background: var(--card-bg);
+        border-radius: 10px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid var(--border-color);
+        transition: box-shadow 0.3s ease;
+    }
+    details[open] { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+    summary {
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 25px;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    summary.ux-chapter { color: var(--ux-color); }
+    summary.ui-chapter { color: var(--ui-color); }
+    summary.shared-chapter { color: var(--shared-color); }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '＋'; font-size: 2.2rem; transition: transform 0.3s; color: #adb5bd; }
+    details[open] > summary::after { transform: rotate(45deg); }
+    .content-wrapper { padding: 0 30px 30px; border-top: 1px solid var(--border-color); }
+    h3 { font-size: 1.3rem; margin-top: 35px; border-bottom: 2px solid #f1f3f5; padding-bottom: 10px; }
+    .box { padding: 20px; margin: 20px 0; border-left-width: 5px; border-left-style: solid; border-radius: 5px; }
+    .tip { background-color: #e7f5ff; border-color: var(--ux-color); }
+    .example { background-color: #f4eef8; border-color: var(--ui-color); }
+    .key-concept { background-color: #f0fff0; border-color: var(--shared-color); }
+    .code-block { background: #2d2d2d; color: #f8f9fa; padding: 15px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid var(--border-color); padding: 14px; text-align: left; }
+    th { background-color: #f8f9fa; font-weight: 600; }
+    .checklist { background-color: #fff9e6; border: 1px solid #ffd666; padding: 20px; border-radius: 8px; margin-top: 30px; }
+    .checklist ul { list-style-type: '✅ '; padding-left: 25px; }
+    .diagram { text-align: center; padding: 20px; background-color: #f8f9fa; border-radius: 8px; margin: 20px 0; }
+    footer { text-align: center; padding: 40px; margin-top: 50px; color: #868e96; background-color: #e9ecef; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>UI/UX设计师培训教科书</h1>
+    <p>从零到一，掌握构建卓越数字产品的全链路技艺</p>
+</header>
+
+<main>
+
+<div class="box key-concept">
+    <h2>前言：成为产品的“建筑师”与“室内设计师”</h2>
+    <p>欢迎来到“数字奇迹之城”的美学与体验设计院！在这座城市里，每一座供市民（用户）使用的建筑（App或网站），都需要兼具实用性与美观性。而UI/UX设计师，正是这些建筑的灵魂人物。</p>
+    <ul>
+        <li><strong>用户体验（UX）设计师是“建筑师”</strong>：他首先要研究未来居住者的生活习惯和需求（用户研究）。他要规划大楼的整体结构、房间布局、人流动线（信息架构与用户流程），确保人们在其中生活得方便、舒适、合乎逻辑。他关注的是“这栋楼好不好用”。</li>
+        <li><strong>用户界面（UI）设计师是“室内设计师”</strong>：在建筑师的蓝图之上，他负责大楼内部的视觉呈现。他选择墙壁的颜色、家具的风格、灯光的布置、门把手的材质（视觉设计与组件），让整个空间美观、协调，并能体现出特定的品牌气质。他关注的是“这栋楼好不好看”。</li>
+    </ul>
+    <p>一栋伟大的建筑，既需要合理的结构，也需要赏心悦目的设计。本手册将系统地教你如何同时扮演好这两个角色，从打好地基到精美装修，全程主导城市中每一座核心建筑的设计。</p>
+</div>
+
+<h2 class="part-title">第一部分：设计之魂 - 核心理念与思维</h2>
+
+<details open>
+    <summary class="ux-chapter">第 1 章：设计思维 - 以用户为中心的创新流程</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握一套科学的、以人为本的解决问题的方法论，它将是你整个设计生涯的指导思想。</p>
+        
+        <h3>1.1 什么是设计思维 (Design Thinking)？</h3>
+        <p>设计思维是一套系统的创新流程，它强调从用户的真实需求出发，通过团队协作和快速迭代，寻找创新的解决方案。它不仅仅是“设计”，更是一种“思考方式”。</p>
+        
+        <h3>1.2 设计思维的五个阶段</h3>
+        <p>我们将以一个贯穿全书的案例----**“静心一刻 (Mindful Moments)”App**（一款帮助年轻人缓解焦虑的冥想应用）----来解释这五个阶段。</p>
+        <table>
+            <thead><tr><th>阶段</th><th>核心任务</th><th>“静心一刻”App案例</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. 共情 (Empathize)</strong></td>
+                    <td>深入理解你的用户。通过观察、访谈等方式，设身处地地感受他们的经历、痛点和期望。</td>
+                    <td>我们访谈了多位20-30岁的都市白领，发现他们普遍感到焦虑，但觉得传统冥想“太玄乎”、“没时间”。</td>
+                </tr>
+                <tr>
+                    <td><strong>2. 定义 (Define)</strong></td>
+                    <td>将你在共情阶段收集到的信息进行分析和整合，提炼出清晰、可操作的核心问题。</td>
+                    <td>我们定义核心问题为：“一位忙碌且对冥想持怀疑态度的年轻白领，如何能用每天5分钟的碎片时间，体验到简单、无压力的正念练习？”</td>
+                </tr>
+                <tr>
+                    <td><strong>3. 构思 (Ideate)</strong></td>
+                    <td>针对定义好的问题，进行头脑风暴，尽可能多地产生解决方案。此阶段不求完美，只求数量和多样性。</td>
+                    <td>团队想出了很多点子：游戏化冥想、故事性引导、根据情绪推荐练习、社交打卡等。</td>
+                </tr>
+                <tr>
+                    <td><strong>4. 原型 (Prototype)</strong></td>
+                    <td>将你的想法制作成低成本、可触摸、可测试的模型。它可以是一张纸质草图，也可以是一个简单的可交互数字模型。</td>
+                    <td>我们用纸和笔画出了几个核心界面的草图，并制作了一个简单的、可点击的Figma原型来模拟“情绪选择”和“5分钟呼吸练习”的流程。</td>
+                </tr>
+                <tr>
+                    <td><strong>5. 测试 (Test)</strong></td>
+                    <td>让真实用户使用你的原型，观察他们的行为，收集他们的反馈，从而验证你的想法，并为下一轮迭代提供方向。</td>
+                    <td>我们找了5位目标用户来测试原型，发现他们很喜欢“根据情绪推荐”的功能，但觉得引导语过于专业，不易理解。</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="checklist">
+            <h4>第一章自查清单</h4>
+            <ul>
+                <li>我能说出设计思维的五个阶段，并解释每个阶段的目标吗？</li>
+                <li>为什么“共情”是整个流程的第一步也是最重要的一步？</li>
+                <li>原型制作的目的是为了展示一个完美的产品，还是为了快速获得反馈？</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第二部分：UX之旅 - 探寻用户与构建骨架</h2>
+
+<details>
+    <summary class="ux-chapter">第 2 章：用户研究 - 成为用户的知己</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握基础的用户研究方法，学会从纷繁的信息中找到产品的机会点。</p>
+
+        <h3>2.1 用户访谈：倾听用户的声音</h3>
+        <p><strong>用户访谈：</strong>找到你的目标用户，和他们进行一次深入的、开放式的交谈。记住，你的目标是“倾听”，而不是“推销”。</p>
+        <div class="tip box">
+            <strong>有效访谈提问技巧：</strong>
+            <ul>
+                <li><strong>问开放性问题：</strong>不要问“你喜欢我们的盲盒想法吗？”，而要问“可以和我聊聊你平时是怎么解决午餐问题的吗？”</li>
+                <li><strong>关注过去的行为：</strong>不要问“你将来会用吗？”，而要问“你上周有几次是因为太忙而随便吃了点东西？”</li>
+                <li><strong>深挖“为什么”：</strong>当用户说“我讨厌点外卖”时，追问“能具体说说是什么让你讨厌吗？”</li>
+            </ul>
+        </div>
+
+        <h3>2.2 用户画像 (Persona)：为你的用户“塑像”</h3>
+        <p>用户画像是基于真实研究数据创造的虚拟用户，它帮助整个团队在设计过程中始终聚焦于真实的用户。</p>
+        <div class="example box">
+            <h4>“静心一刻”App 用户画像</h4>
+            <div style="display:flex; flex-wrap:wrap; gap:20px;">
+                <div style="flex:1; min-width:200px;">
+                    <img src=" alt="用户头像" style="border-radius:50%; display:block; margin:0 auto; width:150px; height:150px;">
+                </div>
+                <div style="flex:2; min-width:300px;">
+                    <p><strong>姓名：</strong>林晓雯 (Wendy)</p>
+                    <p><strong>身份：</strong>27岁，互联网公司市场专员</p>
+                    <p><strong>生活状态：</strong>“工作压力大，生活节奏快，晚上经常失眠，想放松但又觉得无从下手。”</p>
+                    <p><strong>目标 (Goals):</strong></p>
+                    <ul>
+                        <li>找到一种简单、快速的方式来缓解工作中的焦虑。</li>
+                        <li>改善睡眠质量。</li>
+                        <li>不希望花费太多时间学习复杂的理论。</li>
+                    </ul>
+                    <p><strong>痛点 (Frustrations):</strong></p>
+                    <ul>
+                        <li>觉得冥想App都太“高深”，有距离感。</li>
+                        <li>付费订阅前，不确定对自己是否有效。</li>
+                        <li>很难坚持每天练习。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h3>2.3 用户旅程图 (Journey Map)：描绘体验的全过程</h3>
+        <p>用户旅程图可视化地展示了用户为了实现某个目标（如“完成一次冥想练习”）所经历的完整过程，帮助我们发现体验中的高峰和低谷。</p>
+    </div>
+</details>
+
+<details>
+    <summary class="ux-chapter">第 3 章：信息架构与交互设计 - 搭建产品的骨架</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>学会组织产品内容和功能，并设计出符合用户直觉的交互流程。</p>
+
+        <h3>3.1 信息架构 (IA)：让信息井井有条</h3>
+        <p>信息架构的核心是让用户能轻松地找到他们想要的信息。想象一下逛超市，商品分类清晰、指示明确，你就能很快找到牛奶。如果所有商品都堆在一起，你可能就放弃了。IA就是App里的“超市布局规划师”。</p>
+        
+        <h3>3.2 用户流程图 (User Flow)：规划用户的行动路径</h3>
+        <p>用户流程图用一系列的方框和箭头，展示了用户完成一个任务所需要经过的每一步界面和操作。它帮助我们在开发前就发现流程中不合理或缺失的环节。</p>
+        <div class="diagram">
+            <h4>“静心一刻”App - 首次练习流程图 (简化版)</h4>
+            <p>[打开App] → [首页] → (点击“开始练习”) → [情绪选择页] → (选择“焦虑”) → [练习列表页] → (选择“5分钟呼吸练习”) → [练习播放页] → [练习完成页]</p>
+        </div>
+
+        <h3>3.3 交互设计 (IxD)：设计“对话”的方式</h3>
+        <p>交互设计关注的是产品如何响应用户的操作。一个好的交互就像一次愉快的对话，流畅、自然、有反馈。</p>
+        <div class="key-concept box">
+            <strong>交互设计的核心：反馈 (Feedback)</strong>
+            <p>用户的每一个操作都应该得到系统的即时反馈，让他知道“系统听到了”。</p>
+            <ul>
+                <li><strong>视觉反馈：</strong>点击按钮时，按钮变色或收缩。</li>
+                <li><strong>听觉反馈：</strong>完成支付时，发出“叮”的提示音。</li>
+                <li><strong>触觉反馈：</strong>在手机上进行重要操作时，设备轻微震动。</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第三部分：UI之旅 - 雕琢产品的容貌</h2>
+
+<details>
+    <summary class="ui-chapter">第 4 章：从线框图到高保真原型</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握将抽象流程转化为具体界面的能力，并学会制作不同保真度的原型。</p>
+
+        <h3>4.1 线框图 (Wireframe)：只关注结构与布局</h3>
+        <p>线框图是低保真度的设计稿，它用简单的黑白灰和方框来表示界面的结构、布局和核心元素。<strong>此阶段完全不考虑颜色、字体、图片等视觉细节。</strong></p>
+        <p><strong>目的：</strong>快速验证信息架构和用户流程是否合理，修改成本极低。</p>
+
+        <h3>4.2 高保真原型 (High-Fidelity Prototype)：无限接近最终产品</h3>
+        <p>高保真原型是加入了完整视觉设计（颜色、字体、图标、图片）和交互效果的可点击模型。它看起来、用起来都和最终的App非常相似。</p>
+        <p><strong>目的：</strong>进行最终的可用性测试、向团队和老板演示、作为交付给开发人员的精确参考。</p>
+    </div>
+</details>
+
+<details>
+    <summary class="ui-chapter">第 5 章：视觉设计基础 - 色彩、字体与布局</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握UI设计的三大支柱，建立专业的设计审美。</p>
+
+        <h3>5.1 色彩 (Color)</h3>
+        <p>色彩是情感的语言。在UI设计中，我们通常使用 <strong>60-30-10法则</strong> 来分配颜色，创造出和谐的视觉效果。</p>
+        <ul>
+            <li><strong>60% 主色 (Primary Color):</strong> 奠定产品的主基调，大面积使用。</li>
+            <li><strong>30% 辅助色 (Secondary Color):</strong> 用于次要信息、卡片背景等，与主色形成对比。</li>
+            <li><strong>10% 点缀色/强调色 (Accent Color):</strong> 用于需要用户注意的关键操作，如按钮、链接、通知。</li>
+        </ul>
+
+        <h3>5.2 字体 (Typography)</h3>
+        <p>字体是信息的载体。好的字体排印能极大地提升内容的可读性和界面的专业感。</p>
+        <div class="tip box">
+            <strong>字体使用三大原则：</strong>
+            <ol>
+                <li><strong>可读性第一：</strong>选择清晰易读的字体，尤其是在小字号时。</li>
+                <li><strong>保持简洁：</strong>一个App内通常使用不超过2种字体。</li>
+                <li><strong>建立层级：</strong>通过字号、字重（粗细）、颜色的变化，清晰地区分标题、副标题、正文等信息层级。</li>
+            </ol>
+        </div>
+
+        <h3>5.3 布局与网格 (Layout & Grid)</h3>
+        <p>网格系统是UI设计的“隐形骨架”，它帮助我们将界面元素进行有序的对齐和排列，创造出专业、规整的视觉感受。最常用的是<strong>8点网格系统</strong>，即所有元素的尺寸和间距都设置为8的倍数（如8px, 16px, 24px...）。</p>
+    </div>
+</details>
+
+<details>
+    <summary class="ui-chapter">第 6 章：设计系统 - 实现一致性与效率</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解设计系统的价值，并学会用组件化思维进行设计。</p>
+
+        <h3>6.1 什么是设计系统 (Design System)？</h3>
+        <p>设计系统是一套服务于产品设计的完整标准，它包含了可复用的UI组件、设计原则、代码规范等。它不是一个简单的UI Kit，而是一套活的、不断演进的体系，是设计师与工程师之间沟通的“共同语言”。</p>
+        
+        <h3>6.2 原子设计 (Atomic Design)</h3>
+        <p>这是构建设计系统最经典的理论，它将界面拆解为五个层级：</p>
+        <ul>
+            <li><strong>原子 (Atoms):</strong> 最基础的元素，如一个标签、一个输入框、一个按钮。</li>
+            <li><strong>分子 (Molecules):</strong> 由原子组成的简单组件，如一个“搜索框+按钮”组成的搜索模块。</li>
+            <li><strong>有机体 (Organisms):</strong> 由分子和/或原子组成的更复杂的组件，如包含头像、用户名、搜索模块的页面头部。</li>
+            <li><strong>模板 (Templates):</strong> 页面的布局框架，定义了有机体等组件如何排列。</li>
+            <li><strong>页面 (Pages):</strong> 模板中填充了真实内容的最终实例。</li>
+        </ul>
+    </div>
+</details>
+
+<h2 class="part-title">第四部分：协作与交付 - 将设计变为现实</h2>
+
+<details>
+    <summary class="shared-chapter">第 7 章：设计交付 - 与工程师的完美协作</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>掌握一套清晰、高效的设计交付流程，确保你的设计被100%精准地实现。</p>
+
+        <h3>7.1 为什么交付很重要？</h3>
+        <p>一个糟糕的交付流程，会抵消所有前期出色的设计工作。工程师如果看不懂、找不到、理解错了你的设计，最终开发出的产品就会与你的设想千差万别，导致大量的返工和时间浪费。</p>
+
+        <h3>7.2 设计交付清单 (Handoff Checklist)</h3>
+        <p>在把你的Figma文件链接发给工程师之前，请务必检查以下内容：</p>
+        <div class="checklist">
+            <ul>
+                <li><strong>文件结构清晰：</strong>页面和图层是否已清晰命名并组织有序？（反例：满屏的“Frame 128”, “Rectangle 57”）</li>
+                <li><strong>覆盖所有状态：</strong>是否设计了组件的所有交互状态？（如按钮的默认、悬停、点击、禁用状态）</li>
+                <li><strong>考虑边缘情况：</strong>是否设计了空状态、错误状态、加载中、网络异常等情况的界面？</li>
+                <li><strong>提供完整标注：</strong>是否清晰标注了元素的尺寸、间距、颜色值、字体属性？（Figma的Dev Mode可以帮助完成大部分工作）</li>
+                <li><strong>导出所有资源：</strong>是否准备好了所有需要切图的图标、图片，并按平台（iOS, Android）提供了正确格式和尺寸？</li>
+                <li><strong>提供交互说明：</strong>对于复杂的动效和交互，是否录制了视频或提供了详细的文字说明？</li>
+                <li><strong>主动沟通：</strong>是否已经和工程师坐下来，当面或通过视频会议，向他演示一遍核心流程和交互？</li>
+            </ul>
+        </div>
+        
+        <h3>7.3 设计走查 (Design QA)</h3>
+        <p>在工程师完成开发后、产品正式发布前，设计师需要进行“设计走查”。即在测试设备上，逐一核对实现效果与设计稿是否一致，找出像素级的偏差并提交修改，确保最终产出的质量。</p>
+    </div>
+</details>
+
+<details>
+    <summary class="shared-chapter">第 8 章：进阶话题 - 无障碍与国际化</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>拓宽你的设计视野，学会设计能为更广泛人群服务的产品。</p>
+
+        <h3>8.1 无障碍设计 (Accessibility, a11y)</h3>
+        <p>无障碍设计的目标是让所有人，包括有视、听、知、行障碍的人士，都能无障碍地使用你的产品。这不仅是道德责任，在很多国家也是法律要求。</p>
+        <div class="tip box">
+            <strong>无障碍设计快速入门：</strong>
+            <ul>
+                <li><strong>高对比度：</strong>确保文本与背景的颜色对比度足够高，方便视力不佳的用户阅读。可以使用在线工具检查对比度。</li>
+                <li><strong>为图片提供替代文本 (Alt Text)：</strong>这样屏幕阅读器可以为视障用户读出图片内容。</li>
+                <li><strong>支持键盘操作：</strong>确保所有功能都可以仅通过键盘来完成，方便无法使用鼠标的用户。</li>
+            </ul>
+        </div>
+        
+        <h3>8.2 国际化设计 (Internationalization, i18n)</h3>
+        <p>如果你的产品要面向全球用户，就必须在设计之初考虑国际化。这意味着你的设计需要能适应不同的语言、文化和格式。</p>
+        <div class="example box">
+            <strong>国际化设计常见陷阱：</strong>
+            <ul>
+                <li><strong>文本长度：</strong>“确定”在英文里是“OK”，在德语里可能是“Bestätigen”。你的按钮和布局需要能容纳下更长的文本。</li>
+                <li><strong>从右到左 (RTL)：</strong>阿拉伯语、希伯来语等是从右向左阅读的，你的整个界面布局都需要能镜像翻转。</li>
+                <li><strong>文化差异：</strong>一个在你的文化里表示“OK”的手势图标，在另一个文化里可能带有冒犯意味。</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">结语：你的设计之旅刚刚开始</h2>
+<div class="box key-concept">
+    <p>恭喜你完成了“数字城市”建筑师与室内设计师的入门训练！</p>
+    <p>你已经掌握了从用户研究到设计交付的全流程知识。但请记住，UI/UX设计是一门实践的艺术和科学。理论知识是你的地图，但真正的能力需要在一次次的“建筑设计”和“室内装修”中锻炼和成长。为了让你的设计蓝图能被完美实现，我们强烈建议你继续学习本系列中“Web开发者”与“软件测试工程师”的课程，了解你的合作伙伴如何思考和工作。</p>
+    <p><strong>下一步做什么？</strong></p>
+    <ol>
+        <li><strong>开始一个个人项目：</strong>为你自己或朋友重新设计一个你觉得不好用的App，完整地走一遍本书中学到的流程。</li>
+        <li><strong>构建你的作品集：</strong>将你的项目整理成案例研究（Case Study），清晰地展示你的思考过程，而不仅仅是最终效果图。</li>
+        <li><strong>保持好奇，持续学习：</strong>关注行业博客、参加线上分享、学习新的工具。设计的世界永远在变化。</li>
+    </ol>
+    <p>现在，合上书本，开始创造能让这座数字城市变得更美好一点点的产品吧！</p>
+</div>
+
+</main>
+
+<footer>
+    <p style="font-size: 1.1em; font-weight: 500; color: #495057; margin-bottom: 10px;">
+        本系列课程由 <strong>许展玮 (Lupin)</strong> 倾力打造
+    </p>
+    <p style="font-size: 0.9em; color: #868e96; margin-top: 0;">
+        © 2025 在问 (zaiwen) 现代软件开发培训系列. All Rights Reserved.
+    </p>
+</footer>
+
+</body>
+</html>

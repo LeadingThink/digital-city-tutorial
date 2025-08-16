@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代软件开发核心岗位培训系列 - 运维/DevOps篇</title>
+<style>
+    :root {
+        --base-color: #495057; /* Base Grey */
+        --cicd-color: #20c997; /* CI/CD Teal */
+        --container-color: #0d6efd; /* Container Blue */
+        --infra-color: #fd7e14;  /* Infrastructure Orange */
+        --monitor-color: #6f42c1; /* Monitoring Purple */
+        --bg-color: #f8f9fa;
+        --text-color: #343a40;
+        --card-bg: #ffffff;
+        --border-color: #e9ecef;
+    }
+    body {
+        font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+        line-height: 1.9;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    header {
+        background: linear-gradient(135deg, #007bff, #6610f2, #fd7e14);
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+        margin: 0;
+        font-size: 2.8rem;
+        font-weight: 700;
+    }
+    header p {
+        margin: 15px 0 0;
+        font-size: 1.4rem;
+        opacity: 0.9;
+    }
+    main {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+    .part-title {
+        text-align: center;
+        margin: 60px 0 30px;
+        font-size: 2.2rem;
+        color: #495057;
+        font-weight: 300;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 15px;
+    }
+    details {
+        background: var(--card-bg);
+        border-radius: 10px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid var(--border-color);
+        transition: box-shadow 0.3s ease;
+    }
+    details[open] { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+    summary {
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 25px;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    summary.base-chapter { color: var(--base-color); }
+    summary.cicd-chapter { color: var(--cicd-color); }
+    summary.container-chapter { color: var(--container-color); }
+    summary.infra-chapter { color: var(--infra-color); }
+    summary.monitor-chapter { color: var(--monitor-color); }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '＋'; font-size: 2.2rem; transition: transform 0.3s; color: #adb5bd; }
+    details[open] > summary::after { transform: rotate(45deg); }
+    .content-wrapper { padding: 0 30px 30px; border-top: 1px solid var(--border-color); }
+    h3 { font-size: 1.4rem; margin-top: 40px; border-bottom: 2px solid #f1f3f5; padding-bottom: 10px; color: #343a40; }
+    h4 { font-size: 1.2rem; margin-top: 30px; color: #495057; }
+    .box { padding: 20px; margin: 20px 0; border-left-width: 5px; border-left-style: solid; border-radius: 5px; }
+    .tip { background-color: #e6f7ff; border-color: #17a2b8; }
+    .example { background-color: #f3eef9; border-color: var(--monitor-color); }
+    .key-concept { background-color: #fff3e6; border-color: var(--infra-color); }
+    .code-block { background: #2d2d2d; color: #f8f9fa; padding: 15px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; font-size: 0.95rem; margin-top: 15px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid var(--border-color); padding: 14px; text-align: left; }
+    th { background-color: #f8f9fa; font-weight: 600; }
+    .conclusion {
+        background: #e6f3f0;
+        border-left: 5px solid #0d5a67;
+        padding: 25px;
+        margin: 40px 0;
+        border-radius: 8px;
+    }
+    footer {
+        text-align: center;
+        padding: 40px;
+        margin-top: 50px;
+        color: #868e96;
+        background-color: #e9ecef;
+    }
+    @media (max-width: 768px) {
+        header h1 { font-size: 2.2rem; }
+        header p { font-size: 1.1rem; }
+        summary { font-size: 1.2rem; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>现代软件开发核心岗位培训系列</h1>
+    <p>从零到一，掌握构建卓越数字产品的全链路技艺</p>
+</header>
+
+<main>
+
+<div class="box key-concept" style="border-color: #6c757d;">
+    <h2>前言：欢迎来到城市自动化建设局与应急响应中心</h2>
+    <p>欢迎来到运维与DevOps的世界！在本系列中，我们将一座卓越的软件产品比作一座宏伟的“数字城市”。而你，将是这座城市能够7x24小时自动化运转的核心保障。</p>
+    <ul>
+        <li><strong>你的城市 (The City)</strong>：就是公司正在运行的**应用程序或系统**。市民就是我们的用户。</li>
+        <li><strong>建筑队 (The Construction Crew)</strong>：是**开发工程师**，他们负责设计和建造城市里的各种建筑（功能模块）。</li>
+        <li><strong>你的职责 (Your Role)</strong>：你将扮演**城市自动化建设局局长**与**应急响应中心主任**的双重角色。你需要：
+            <ul>
+                <li><strong>建立自动化建筑工厂 (CI/CD Pipeline)</strong>：设计一条流水线，能将建筑队的蓝图（代码）自动、快速、安全地变成坚固的建筑（可部署的软件）。</li>
+                <li><strong>推广标准预制房 (Containerization)</strong>：推广使用像集装箱一样的标准化“预制公寓”（容器），它们可以在城市的任何地方快速部署，并且环境统一。</li>
+                <li><strong>绘制城市总蓝图 (Infrastructure as Code)</strong>：用代码定义城市的道路、管网、电力系统（服务器、网络、数据库），让城市可以被一键复制或重建。</li>
+                <li><strong>确保城市7x24小时运转 (Monitoring & SRE)</strong>：建立城市的监控中心，实时监测水电煤供应和交通状况，并在发生火灾、地震（系统故障）时，第一时间启动应急预案。</li>
+            </ul>
+        </li>
+    </ul>
+    <p>本手册就是你的《城市自动化建设与应急管理纲要》，它将系统地教你如何规划、建造和守护一个繁荣、稳定、高效的数字城市。</p>
+</div>
+
+<h2 class="part-title">第一部分：规划师的基础工具箱</h2>
+
+<details>
+    <summary class="base-chapter">第 1 章：城市的地基 - Linux与网络</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>精通所有服务器运行的基础环境----Linux操作系统，以及让城市连通的血脉----网络。这是你一切工作的基础，必须做到烂熟于心。</p>
+        
+        <h3>1.1 Linux命令行：你的万能遥控器</h3>
+        <p>图形界面是给市民用的，而命令行是你作为规划师，与城市底层设施直接对话的最高效方式。每一个命令都是你发出的一道指令，必须精准无误。</p>
+        
+        <h4>1.1.1 文件与目录操作：规划城市的土地</h4>
+        <p>这是最基本的操作，如同在地图上指点江山。</p>
+        <ul>
+            <li><code>ls</code>: 列出目录内容。
+                <ul>
+                    <li><code>ls -l</code>: 显示详细信息（权限、所有者、大小、修改日期）。</li>
+                    <li><code>ls -a</code>: 显示所有文件，包括隐藏文件（以.开头）。</li>
+                    <li><code>ls -lh</code>: 结合使用，以人类可读的格式显示文件大小 (e.g., 4.0K, 1.2M)。</li>
+                </ul>
+                <div class="code-block">$ ls -lh /var/log
+total 1.2M
+-rw-r--r-- 1 root root 450K Aug 15 10:30 syslog
+drwxr-xr-x 2 root root 4.0K Aug 14 06:25 nginx</div>
+            </li>
+            <li><code>cd</code>: 切换目录。
+                <ul>
+                    <li><code>cd /home/user</code>: 切换到绝对路径。</li>
+                    <li><code>cd ../project</code>: 切换到相对路径（..代表上一级目录）。</li>
+                    <li><code>cd ~</code> 或 <code>cd</code>: 快速返回你的家目录。</li>
+                </ul>
+            </li>
+            <li><code>grep</code>: 文本搜索的“超级放大镜”。
+                <ul>
+                    <li><code>grep "ERROR" app.log</code>: 在 `app.log` 中查找所有包含 "ERROR" 的行。</li>
+                    <li><code>grep -i "error" app.log</code>: 忽略大小写进行搜索。</li>
+                    <li><code>grep -r "db_password" /etc</code>: 在 `/etc` 目录下递归搜索包含 "db_password" 的文件，这是排查配置泄露的利器。</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h4>1.1.2 系统状态监控：城市的生命体征监测仪</h4>
+        <p>你需要时刻了解城市的健康状况。</p>
+        <ul>
+            <li><code>top</code> / <code>htop</code>: 实时显示系统进程和资源占用。`htop` 是 `top` 的彩色增强版，强烈推荐安装。你可以清晰地看到哪个进程占用了最多的CPU或内存。</li>
+            <li><code>df -h</code>: 查看磁盘空间使用情况。当磁盘空间满时，城市会“堵塞”（应用无法写入日志，数据库无法写入数据），这是必须监控的核心指标。</li>
+            <li><code>free -h</code>: 查看内存使用情况，包括物理内存和交换空间（swap）。</li>
+            <li><code>ps aux | grep nginx</code>: 查看所有 `nginx` 相关的进程。`ps` 列出进程，`aux` 是常用参数组合，`| grep` 过滤出你关心的进程。</li>
+        </ul>
+
+        <h3>1.2 网络基础：城市的交通动脉</h3>
+        <p>如果网络不通，你的城市就是一座孤岛。你需要理解数据是如何从A点到B点的。</p>
+        <h4>1.2.1 核心概念</h4>
+        <ul>
+            <li><strong>TCP/IP五层模型（简化版）:</strong>
+                <ol>
+                    <li><strong>物理层:</strong> 网线、光纤。</li>
+                    <li><strong>数据链路层:</strong> MAC地址。</li>
+                    <li><strong>网络层:</strong> IP地址，负责在城市间（公网）寻址。</li>
+                    <li><strong>传输层:</strong> TCP/UDP协议，端口号，负责端到端的可靠传输。TCP像打电话，必须先接通；UDP像寄平信，只管发不管收。</li>
+                    <li><strong>应用层:</strong> HTTP, DNS, FTP等，市民能直接感受到的服务。</li>
+                </ol>
+            </li>
+            <li><strong>DNS查询过程:</strong> 当你在浏览器输入 `www.google.com` 时，你的电脑会向DNS服务器（地址簿）查询：“请问 `www.google.com` 的门牌号（IP地址）是多少？” DNS服务器返回IP地址后，浏览器才能真正去访问。</li>
+        </ul>
+        <h4>1.2.2 实用排障工具</h4>
+        <div class="code-block">
+# 1. 检查网络是否通畅 (ICMP协议)
+# 场景：服务器无法连接外部服务，先ping一下看路通不通。
+$ ping 8.8.8.8
+
+# 2. 检查DNS是否工作正常
+# 场景：ping IP可以，ping域名不行，说明是地址簿(DNS)出问题了。
+$ nslookup www.baidu.com
+
+# 3. 检查特定服务器的特定端口是否开放 (TCP握手)
+# 场景：无法连接数据库，检查服务器的3306端口是否在监听。
+$ telnet db.server.com 3306 
+# 如果连接成功，屏幕会变黑；如果失败，会提示 "Connection refused" 或超时。
+
+# 4. 查看网络连接状态
+# 场景：感觉服务器很慢，看看是不是有大量的网络连接。
+# ss 是 netstat 的替代品，速度更快。-tlnp 显示TCP、监听中、数字端口、进程名。
+$ sudo ss -tlnp
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary class="base-chapter">第 2 章：蓝图管理处 - Git版本控制</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>精通管理所有“蓝图”（代码、配置文件）的唯一标准工具----Git，并掌握团队协作的最佳实践。</p>
+        <h3>2.1 Git的核心思想：快照，而非差异</h3>
+        <p>很多版本控制系统存储的是文件的“差异变化”。而Git的核心思想是“快照”（Snapshot）。每次你提交（commit），Git都会对你项目的当前所有文件拍一张“快照”，并保存一个指向这张快照的索引。这种机制使得Git在切换分支、查看历史等操作上快如闪电。</p>
+        
+        <h3>2.2 团队协作工作流：手把手指南</h3>
+        <p>我们将模拟一次完整的“为城市增加一个新公园”的功能开发流程。</p>
+        <ol>
+            <li><strong>第一步：同步最新的城市总规划图</strong>
+                <p>在开始新工作前，永远要先确保你的本地蓝图和中央档案馆（远程仓库）是同步的。</p>
+                <div class="code-block">
+# 切换到主开发分支
+$ git checkout develop
+
+# 从远程拉取最新的修改
+$ git pull origin develop
+                </div>
+            </li>
+            <li><strong>第二步：为新功能创建独立的“设计室”（功能分支）</strong>
+                <p>绝不要在 `develop` 或 `main` 分支上直接修改！这相当于在城市主干道上施工，会造成交通瘫痪。</p>
+                <div class="code-block">
+# 创建一个名为 "feature/add-new-park" 的新分支，并立即切换过去
+$ git checkout -b feature/add-new-park
+                </div>
+            </li>
+            <li><strong>第三步：在新分支上进行设计和建造（修改代码）</strong>
+                <p>现在，你可以在这个独立的分支上自由地添加、修改、删除文件。例如，你创建了 `park.html` 和 `park.css`。</p>
+            </li>
+            <li><strong>第四步：分阶段提交你的工作成果（Commit）</strong>
+                <p>完成一个小的、独立的功能点后，就进行一次提交。提交信息（commit message）一定要写清楚！</p>
+                <div class="code-block">
+# 将新文件添加到Git的暂存区
+$ git add park.html park.css
+
+# 提交这次修改，并写清楚信息
+$ git commit -m "feat: Add initial layout for the new park page"
+# 好的commit message格式: <类型>: <主题>。例如 feat, fix, docs, style, refactor...
+                </div>
+            </li>
+            <li><strong>第五步：将你的设计图上传到中央档案馆（Push）</strong>
+                <div class="code-block">
+$ git push origin feature/add-new-park
+                </div>
+            </li>
+            <li><strong>第六步：请求评审和合并（Pull/Merge Request）</strong>
+                <p>在GitLab或GitHub的网页上，创建一个从 `feature/add-new-park` 到 `develop` 的合并请求（Merge Request）。这相当于你向其他规划师（同事）发出邀请：“我设计的新公园图纸好了，请大家帮忙看看有没有问题，没问题的话我们就把它合并到城市开发总规划里去。”</p>
+            </li>
+            <li><strong>第七步：清理你的设计室（删除分支）</strong>
+                <p>一旦合并完成，这个功能分支的历史使命就结束了。及时清理可以保持档案馆的整洁。</p>
+                <div class="code-block">
+# 切换回主开发分支
+$ git checkout develop
+
+# 删除本地的特性分支
+$ git branch -d feature/add-new-park
+                </div>
+            </li>
+        </ol>
+    </div>
+</details>
+
+<h2 class="part-title">第二部分：自动化建筑工厂 (CI/CD)</h2>
+
+<details>
+    <summary class="cicd-chapter">第 3 章：CI/CD - 从蓝图到建筑的自动化流水线</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>深入理解CI/CD流水线中每个环节的意义，并能独立编写和调试 `.gitlab-ci.yml` 配置文件。</p>
+        <h3>3.1 CI/CD流水线剖析：从代码到服务的旅程</h3>
+        <div class="diagram">
+            <h4>CI/CD 旅程图</h4>
+            <div class="code-block" style="text-align: left; font-size: 1rem;">
+[开发者 Push 代码] -> [GitLab 触发 Webhook] -> [GitLab Runner 接收任务]
+      |
+      +---- [阶段1: Test]
+      |      - Job: 代码风格检查 (Lint)
+      |      - Job: 单元测试 (Unit Test)
+      |
+      +---- [阶段2: Build] (只有Test阶段全部成功才会执行)
+      |      - Job: 构建 Docker 镜像
+      |      - Job: 推送镜像到镜像仓库
+      |
+      +---- [阶段3: Deploy] (只有Build阶段全部成功才会执行)
+             - Job: 部署到测试环境
+             - Job: (手动触发) 部署到生产环境
+            </div>
+        </div>
+        
+        <h3>3.2 案例：为“城市公告牌”搭建GitLab CI流水线 (深度解析)</h3>
+        <p>我们将逐行解释在 `.gitlab-ci.yml` 文件中，每个关键字的含义和作用。</p>
+        <div class="code-block">
+# 定义流水线可以包含哪些阶段，执行顺序从左到右
+stages:
+  - test
+  - build
+  - deploy
+
+# 这是定义一个具体的任务（Job），任务名叫 "unit_test"
+unit_test:
+  stage: test  # 这个任务属于 "test" 阶段
+  image: python:3.9 # 指定运行这个任务需要一个装有Python 3.9的Docker环境
+  script: # 这是任务要执行的核心命令
+    - echo "正在安装依赖..."
+    - pip install -r requirements.txt
+    - echo "正在运行单元测试..."
+    - python manage.py test
+
+# 定义另一个任务，名叫 "build_docker_image"
+build_docker_image:
+  stage: build # 这个任务属于 "build" 阶段
+  image: docker:20.10 # 指定一个装有Docker命令的环境
+  services: # 运行这个任务时，需要一个后台服务
+    - docker:20.10-dind # "dind" = Docker in Docker，让我们可以在Docker容器里执行Docker命令
+  script:
+    - echo "正在登录镜像仓库..."
+    # $CI_REGISTRY_USER, $CI_REGISTRY_PASSWORD, $CI_REGISTRY 是GitLab提供的预定义变量
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - echo "正在构建Docker镜像..."
+    # $CI_COMMIT_SHA 也是预定义变量，代表本次提交的唯一ID，常用于做镜像标签
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - echo "正在推送镜像..."
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+
+# 定义部署任务
+deploy_to_staging:
+  stage: deploy
+  image: alpine # 使用一个非常轻量的基础镜像，因为我们只需要ssh命令
+  before_script: # 在主script之前执行的命令
+    - 'which ssh-agent || ( apk add --update openssh )' # 检查并安装ssh客户端
+    - eval $(ssh-agent -s)
+    # $SSH_PRIVATE_KEY 是我们在GitLab CI/CD变量中配置的服务器私钥
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+  script:
+    - echo "正在部署到测试环境..."
+    # 使用ssh连接到服务器，并执行更新命令
+    - ssh -o StrictHostKeyChecking=no user@staging.server.com "cd /path/to/app && docker-compose pull && docker-compose up -d"
+  environment: # 声明这个任务会部署到一个环境中
+    name: staging
+    url: http://staging.yourdomain.com # 部署成功后，可以在GitLab界面上看到这个链接
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第三部分：标准化预制建筑 (容器化)</h2>
+
+<details>
+    <summary class="container-chapter">第 4 章：Docker - 标准化的“集装箱公寓”</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>精通Dockerfile的每一条核心指令，理解镜像分层机制，并掌握使用多阶段构建（Multi-stage build）来创建精简、安全的生产级镜像。</p>
+        
+        <h3>4.1 虚拟机 vs 容器：独栋别墅与标准化公寓</h3>
+        <p>在Docker出现之前，我们隔离环境的主要方式是虚拟机（VM）。你可以将虚拟机想象成一座“独栋别墅”，它有自己的地基、墙体、屋顶，甚至有自己独立的供水供电系统（Guest OS）。这非常独立，但也很“重”，启动慢，资源消耗大。</p>
+        <p>而**容器**，则像是一栋大型公寓楼里的“标准化公寓”。楼里所有的公寓都共享同一个坚实的地基和主体结构（Host OS Kernel），但每家每户的内部装修（应用代码、依赖库）都是完全隔离的。这使得容器非常“轻”，可以秒级启动，一台服务器（一栋大楼）可以容纳比虚拟机多得多的容器（公寓）。</p>
+        
+        <h3>4.2 深入理解Dockerfile指令</h3>
+        <p>`Dockerfile`是建造“集装箱公寓”的施工蓝图。让我们逐一解析最重要的指令。</p>
+        <table class="table">
+            <thead>
+                <tr><th>指令</th><th>作用</th><th>示例</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>FROM</code></td><td>指定基础户型。必须是第一条指令。</td><td><code>FROM python:3.9-slim-buster</code></td></tr>
+                <tr><td><code>WORKDIR</code></td><td>设置施工现场。后续的<code>RUN</code>, <code>COPY</code>等指令都在此目录下执行。</td><td><code>WORKDIR /app</code></td></tr>
+                <tr><td><code>COPY</code></td><td>将建筑材料从本地搬入。</td><td><code>COPY ./requirements.txt .</code></td></tr>
+                <tr><td><code>RUN</code></td><td>在施工期间（构建镜像时）执行命令，如安装软件。每条<code>RUN</code>会创建新的一层。</td><td><code>RUN pip install -r requirements.txt</code></td></tr>
+                <tr><td><code>EXPOSE</code></td><td>声明公寓的“内部房间号”（端口），供其他公寓访问。这只是一个文档声明，不会真的把端口暴露给外部。</td><td><code>EXPOSE 5000</code></td></tr>
+                <tr><td><code>CMD</code></td><td>公寓通电后（容器启动时）默认执行的命令。可以被<code>docker run</code>的参数覆盖。</td><td><code>CMD ["python", "app.py"]</code></td></tr>
+                <tr><td><code>ENTRYPOINT</code></td><td>配置公寓为“专卖店”（可执行程序）。<code>CMD</code>的内容会作为参数传给它。更难被覆盖。</td><td><code>ENTRYPOINT ["/usr/bin/java", "-jar"]</code></td></tr>
+            </tbody>
+        </table>
+        
+        <h3>4.3 案例：用多阶段构建优化“城市公告牌”镜像</h3>
+        <p>我们之前在CI/CD中使用的Dockerfile是单阶段的，它把所有开发依赖和源代码都打包进了最终镜像，这既不安全，也使得镜像体积臃肿。现在我们用多阶段构建来优化它。</p>
+        
+        <h4>旧的Dockerfile (单阶段)</h4>
+        <div class="code-block">
+FROM python:3.9
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]
+# 问题：包含了完整的Python构建环境和所有源码，体积可能很大。
+        </div>
+
+        <h4>新的Dockerfile (多阶段构建)</h4>
+        <div class="code-block">
+# --- 阶段1: 构建阶段 (起个别名叫 builder) ---
+FROM python:3.9 AS builder
+
+# 设置工作目录
+WORKDIR /usr/src/app
+
+# 安装所有依赖，包括构建时需要的（比如编译器）
+COPY requirements.txt .
+RUN pip install --no-cache-dir --prefix="/usr/src/app/deps" -r requirements.txt
+
+# --- 阶段2: 最终阶段 ---
+# 使用一个非常精简的基础镜像
+FROM python:3.9-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 只从构建阶段(builder)复制我们真正需要的东西：
+# 1. 安装好的依赖库
+COPY --from=builder /usr/src/app/deps /usr/local
+# 2. 应用的源代码
+COPY . .
+
+# 暴露端口并启动应用
+EXPOSE 5000
+CMD ["python", "app.py"]
+        </div>
+        <div class="tip box">
+            <strong>规划师笔记：</strong>多阶段构建是现代Docker实践的基石。它能显著减小镜像体积（通常能减少50%以上），并减少攻击面（最终镜像里没有编译器、构建工具等），让你的“公寓”更轻便、更安全。
+        </div>
+    </div>
+</details>
+
+<details>
+    <summary class="container-chapter">第 5 章：Kubernetes - 城市的智能调度中心</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解Kubernetes的核心架构和工作原理，能熟练使用`kubectl`，并独立使用Deployment和Service部署一个高可用的应用。</p>
+        
+        <h3>5.1 Kubernetes架构：数字城市的“市政厅”</h3>
+        <p>一个Kubernetes集群，就像一个完整的城市，由“市政厅”（Control Plane）和多个“城区”（Worker Nodes）组成。</p>
+        <ul>
+            <li><strong>Control Plane (市政厅):</strong> 负责整个城市的管理和决策。
+                <ul>
+                    <li><strong>API Server:</strong> 市政大厅的唯一入口。所有部门的沟通、市民（你）的请求，都必须经过它。</li>
+                    <li><strong>etcd:</strong> 城市的“户籍与土地管理局”。这是一个高可靠的数据库，存储了城市所有资源的期望状态和实际状态。是唯一的数据权威。</li>
+                    <li><strong>Scheduler:</strong> “规划局”。当有新的“建房申请”（创建Pod）时，它会根据城市的资源情况和规划规则，决定把房子建在哪个“城区”（Node）最合适。</li>
+                    <li><strong>Controller Manager:</strong> “市政各部门”。比如“房管局”（Deployment Controller）会确保公寓数量始终和你申请的一样多；“交通局”（Service Controller）负责设置路牌。</li>
+                </ul>
+            </li>
+            <li><strong>Worker Node (城区):</strong> 负责具体执行任务。
+                <ul>
+                    <li><strong>kubelet:</strong> 每个城区的“区长”。它时刻与API Server保持联系，接收指令，并确保自己城区里的公寓（Pods）都按要求建好并正常运行。</li>
+                    <li><strong>kube-proxy:</strong> 每个城区的“邮差和网络管理员”。负责设置网络规则，确保市民的信件（网络流量）能准确送达正确的公寓。</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h3>5.2 案例：在Kubernetes中部署“城市公告牌”</h3>
+        <p>现在，我们将使用`kubectl`（你的市政通用遥控器）和YAML蓝图，在K8s中部署我们在上一章构建的Docker镜像。</p>
+        
+        <h4>第一步：编写Deployment蓝图 (`deployment.yaml`)</h4>
+        <p>这个蓝图告诉K8s，我们想要一个什么样的“公寓楼”。</p>
+        <div class="code-block">
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: city-bulletin-deployment # 公寓楼的名字
+spec:
+  replicas: 3 # 我希望始终保持3套公寓在运营
+  selector:
+    matchLabels:
+      app: city-bulletin # 这个标签是房管局用来识别哪些公寓是它管的
+  template: # 这是公寓户型图 (Pod Template)
+    metadata:
+      labels:
+        app: city-bulletin # 给每套公寓都贴上这个标签
+    spec:
+      containers:
+      - name: city-bulletin-container
+        image: your-registry/city-bulletin:latest # 使用我们优化后的镜像
+        ports:
+        - containerPort: 5000 # 公寓内部的应用监听5000端口
+        </div>
+        
+        <h4>第二步：编写Service蓝图 (`service.yaml`)</h4>
+        <p>这个蓝图为我们的公寓楼创建一个固定的“街道地址和门牌号”，方便市民访问。</p>
+        <div class="code-block">
+apiVersion: v1
+kind: Service
+metadata:
+  name: city-bulletin-service # 街道地址的名字
+spec:
+  selector:
+    app: city-bulletin # 交通局根据这个标签，找到所有属于这个公寓楼的公寓
+  ports:
+    - protocol: TCP
+      port: 80 # 街道地址的门牌号是80
+      targetPort: 5000 # 访问80端口的流量，会被转发到公寓的5000房间
+  type: NodePort # Service类型。NodePort会在每个城区(Node)上开一个端口，允许外部访问
+        </div>
+        
+        <h4>第三步：施工与检查</h4>
+        <div class="code-block">
+# 应用蓝图，开始施工
+$ kubectl apply -f deployment.yaml
+$ kubectl apply -f service.yaml
+
+# 检查公寓楼的建设状态
+$ kubectl get deployment city-bulletin-deployment
+# NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+# city-bulletin-deployment   3/3     3            3           1m
+
+# 查看建好的三套公寓
+$ kubectl get pods -l app=city-bulletin
+# NAME                                        READY   STATUS    RESTARTS   AGE
+# city-bulletin-deployment-5f8b6c7b4f-abcde   1/1     Running   0          1m
+# city-bulletin-deployment-5f8b6c7b4f-fghij   1/1     Running   0          1m
+# city-bulletin-deployment-5f8b6c7b4f-klmno   1/1     Running   0          1m
+
+# 查看街道地址信息
+$ kubectl get service city-bulletin-service
+# NAME                    TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+# city-bulletin-service   NodePort   10.100.200.30   <none>        80:31234/TCP   1m
+# 你现在可以通过任意一个Node的IP地址加上31234端口访问你的应用了。
+        </div>
+        
+        <h3>5.3 应急预案：Pod状态异常排查</h3>
+        <div class="tip box">
+            <strong>应急响应中心手册：</strong>
+            <ul>
+                <li><strong>Pod状态为 `Pending`?</strong> -> 房子批下来了但没地方建。执行 `kubectl describe pod <pod-name>`，通常是资源不足（CPU/Memory）或调度失败。</li>
+                <li><strong>Pod状态为 `CrashLoopBackOff`?</strong> -> 房子建好了但住户（应用）反复崩溃。执行 `kubectl logs <pod-name>` 查看应用日志找出程序错误。要看上一次崩溃的日志，用 `kubectl logs -p <pod-name>`。</li>
+                <li><strong>Pod状态为 `ImagePullBackOff`?</strong> -> 无法拉取镜像。检查镜像名称是否正确、仓库是否需要登录凭证（需要配置ImagePullSecrets）。</li>
+            </ul>
+        </div>
+    </div>
+</details>
+
+<h2 class="part-title">第四部分：基础设施即代码与监控</h2>
+
+<details>
+    <summary class="infra-chapter">第 6 章：Terraform & Ansible - 自动化城市规划与建设</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>深刻理解“基础设施即代码”（IaC）的哲学。明确区分并掌握Terraform（资源编排）和Ansible（配置管理）的核心用法，并能将两者结合，实现从零到可用的服务器自动化交付。</p>
+        
+        <h3>6.1 IaC两大支柱：Terraform vs Ansible</h3>
+        <p>作为城市规划师，你需要两种核心能力：一是规划土地、修建道路和楼房骨架；二是为建好的楼房进行装修和后续维护。这完美对应了IaC的两个核心工具。</p>
+        <table class="table">
+            <thead>
+                <tr><th>特性</th><th>Terraform (城市规划师)</th><th>Ansible (装修与物业)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>核心任务</strong></td><td>资源<strong>编排</strong> (Orchestration)。负责从无到有地创建、修改、销毁基础设施。</td><td><strong>配置管理</strong> (Configuration Management)。负责在已有的服务器上安装软件、修改配置、启动服务。</td></tr>
+                <tr><td><strong>工作模式</strong></td><td><strong>声明式</strong>。你描述“我想要什么”，它负责实现。</td><td><strong>过程式</strong> (但可声明)。你描述“一步步该怎么做”。</td></tr>
+                <tr><td><strong>状态管理</strong></td><td><strong>有状态</strong>。通过一个 `terraform.tfstate` 文件记录它管理的所有资源，知道当前城市的真实样貌。</td><td><strong>无状态</strong>。默认不记录服务器的当前状态，每次都从头执行任务。</td></tr>
+                <tr><td><strong>典型场景</strong></td><td>创建VPC、云服务器、数据库、K8s集群。</td><td>在100台服务器上安装Nginx、部署应用代码、执行安全基线加固。</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>6.2 案例：自动化交付一台Web服务器</h3>
+        <p>我们的目标是：用Terraform在云上创建一台服务器，然后立刻用Ansible在这台服务器上装好Nginx并启动。</p>
+        
+        <h4>第一步：用Terraform规划和创建服务器</h4>
+        <p>我们创建一个 `main.tf` 文件。</p>
+        <div class="code-block">
+# 配置云服务商 (以AWS为例)
+provider "aws" {
+  region = "us-east-1"
+}
+
+# 定义一个安全组，相当于服务器的防火墙，只允许SSH(22)和HTTP(80)访问
+resource "aws_security_group" "web_sg" {
+  name        = "web-server-sg"
+  description = "Allow SSH and HTTP inbound traffic"
+  
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # 生产环境请限制为你的IP
+  }
+  
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# 创建一台EC2云服务器
+resource "aws_instance" "web_server" {
+  ami           = "ami-0c55b159cbfafe1f0" # 一个标准的Amazon Linux 2镜像ID
+  instance_type = "t2.micro"
+  security_groups = [aws_security_group.web_sg.name]
+  key_name      = "your-ssh-key-name" # 你在AWS上预先创建的SSH密钥对名称
+
+  tags = {
+    Name = "City-Bulletin-WebServer"
+  }
+}
+
+# 输出创建好的服务器的公网IP地址
+output "public_ip" {
+  value = aws_instance.web_server.public_ip
+}
+        </div>
+        <div class="code-block">
+# 执行Terraform
+$ terraform init   # 初始化
+$ terraform plan   # 预览
+$ terraform apply  # 创建
+# 创建成功后，会输出服务器的IP地址
+        </div>
+        
+        <h4>第二步：用Ansible进行装修</h4>
+        <p>首先，创建Ansible的“通讯录”`inventory.ini`，把Terraform输出的IP地址填进去。</p>
+        <div class="code-block">
+[webservers]
+54.123.45.67 ansible_user=ec2-user ansible_ssh_private_key_file=~/.ssh/your-ssh-key.pem
+        </div>
+        <p>然后，创建“装修施工单”`playbook.yml`。</p>
+        <div class="code-block">
+- hosts: webservers
+  become: yes # 相当于在每条命令前加 sudo
+  tasks:
+    - name: Update all packages
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+        </div>
+        <div class="code-block">
+# 执行Ansible
+$ ansible-playbook -i inventory.ini playbook.yml
+        </div>
+        <p>执行完毕后，访问你服务器的公网IP，就能看到Nginx的欢迎页面了。你成功地自动化了整个交付流程！</p>
+    </div>
+</details>
+
+<details>
+    <summary class="monitor-chapter">第 7 章：Prometheus & Grafana - 城市的监控中心</summary>
+    <div class="content-wrapper">
+        <p><strong>学习目标：</strong>理解可观测性（Observability）的三大支柱。掌握基于Metrics的监控体系，能为应用植入监控探针，配置Prometheus抓取数据，并用Grafana创建仪表盘和设置告警。</p>
+        
+        <h3>7.1 从监控到可观测性：从“知道坏了”到“知道为什么坏”</h3>
+        <p>传统的<strong>监控</strong>告诉你：“CPU使用率99%！”。这就像城市应急中心大屏上一个红灯亮了。你知道出事了，但不知道具体是哪条路堵了，还是某个商场着火了。</p>
+        <p>现代的<strong>可观测性</strong>，让你有能力去探索和理解系统内部的状态。它建立在三大支柱之上：</p>
+        <ul>
+            <li><strong>Metrics (指标):</strong> 可聚合的数字。是你的城市“宏观经济指数”，如“当前全城交通流量”、“每秒电力消耗”。适合观察趋势和设置告警。</li>
+            <li><strong>Logs (日志):</strong> 详细的事件记录。是城市的“事件记录本”，如“某时某分，A路口发生一起追尾事故”。适合事后排查具体问题。</li>
+            <li><strong>Traces (链路追踪):</strong> 一次请求的完整旅程。是“一个市民从家到公司的完整GPS轨迹”，显示他经过了哪些路口、每段路花了多长时间。适合排查微服务架构中的性能瓶颈。</li>
+        </ul>
+        <p>本章我们聚焦于构建可观测性的基石----Metrics体系。</p>
+        
+        <h3>7.2 案例：为“城市公告牌”建立全方位监控</h3>
+        
+        <h4>第一步：应用植入探针 (Instrumentation)</h4>
+        <p>我们要让应用自己“开口说话”，告诉我们它的运行状态。我们使用Python的`prometheus-client`库。</p>
+        <div class="code-block">
+# app.py (部分修改)
+from flask import Flask, Response
+from prometheus_client import Counter, generate_latest, REGISTRY
+
+app = Flask(__name__)
+
+# 创建一个计数器类型的指标
+http_requests_total = Counter('http_requests_total', 'Total HTTP Requests', ['method', 'endpoint', 'status_code'])
+
+@app.route('/')
+def index():
+    # 每次收到请求，就根据方法、路径和状态码给计数器加1
+    http_requests_total.labels(method='GET', endpoint='/', status_code=200).inc()
+    return "Welcome to City Bulletin!"
+
+@app.route('/error')
+def error():
+    http_requests_total.labels(method='GET', endpoint='/error', status_code=500).inc()
+    return "This is a simulated error.", 500
+
+@app.route('/metrics')
+def metrics():
+    # 这个接口专门用来暴露所有指标给Prometheus
+    return Response(generate_latest(REGISTRY), mimetype='text/plain')
+
+# ... 其他路由 ...
+        </div>
+        
+        <h4>第二步：配置Prometheus抓取数据</h4>
+        <p>我们需要告诉Prometheus去哪里“听”我们的应用说话。修改`prometheus.yml`。</p>
+        <div class="code-block">
+global:
+  scrape_interval: 15s # 每15秒抓取一次
+
+scrape_configs:
+  - job_name: 'city-bulletin'
+    # 这里使用K8s的服务发现，自动找到所有app=city-bulletin的Pod
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      # 只保留标签为 app=city-bulletin 的Pod
+      - source_labels: [__meta_kubernetes_pod_label_app]
+        action: keep
+        regex: city-bulletin
+        </div>
+        
+        <h4>第三步：在Grafana上创建仪表盘</h4>
+        <p>在Grafana中，我们添加一个仪表盘，并创建几个图表（Panel）。</p>
+        <ul>
+            <li><strong>图表1：QPS (每秒请求数)</strong>
+                <ul><li><strong>PromQL查询:</strong> <code>sum(rate(http_requests_total{job="city-bulletin"}[5m]))</code></li></ul>
+            </li>
+            <li><strong>图表2：按端点分的请求速率</strong>
+                <ul><li><strong>PromQL查询:</strong> <code>sum(rate(http_requests_total{job="city-bulletin"}[5m])) by (endpoint)</code></li></ul>
+            </li>
+            <li><strong>图表3：Pod的CPU使用率</strong>
+                <ul><li><strong>PromQL查询:</strong> <code>sum(rate(container_cpu_usage_seconds_total{pod=~"city-bulletin-.*"}[5m])) by (pod)</code></li></ul>
+            </li>
+            <li><strong>图表4：HTTP 5xx 错误率</strong>
+                <ul><li><strong>PromQL查询:</strong> <code>sum(rate(http_requests_total{job="city-bulletin", status_code=~"5.."}[5m])) / sum(rate(http_requests_total{job="city-bulletin"}[5m]))</code></li></ul>
+            </li>
+        </ul>
+        
+        <h4>第四步：设置告警规则</h4>
+        <p>我们不希望24小时盯着屏幕。让机器帮我们看。创建一个`rules.yml`文件，并让Prometheus加载它。</p>
+        <div class="code-block">
+groups:
+- name: city-bulletin-rules
+  rules:
+  - alert: HighErrorRate
+    expr: sum(rate(http_requests_total{job="city-bulletin", status_code=~"5.."}[5m])) / sum(rate(http_requests_total{job="city-bulletin"}[5m])) > 0.05
+    for: 10m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High HTTP 5xx Error Rate on {{ $labels.job }}"
+      description: "The error rate for job {{ $labels.job }} is over 5% for the last 10 minutes. Current value: {{ $value | printf `%.2f` }}%"
+        </div>
+        <p>这条规则的含义是：如果“城市公告牌”应用的5xx错误率在5分钟的窗口内持续高于5%，并且这种情况持续了10分钟，就触发一条名为`HighErrorRate`的严重告警，并发送到Alertmanager进行处理。</p>
+    </div>
+</details>
+
+<div class="conclusion">
+    <h2>结语：开启你的自动化城市建设之旅</h2>
+    <p>恭喜你，未来的自动化建设局长与应急响应中心主任！你已经完成了本课程的学习，掌握了规划、建造、部署和守护一个现代化数字城市的全套技能。你学会了如何构建自动化的工厂，推广标准化的建筑，并用数据时刻守护着城市的安全与稳定。</p>
+    <p>但一座伟大的城市，其发展永无止境。作为DevOps工程师，你的学习之路也同样如此。未来，你还需要探索：</p>
+    <ul>
+        <li><strong>DevSecOps:</strong> 如何在自动化流水线的每一步都融入安全检查，建造更安全的城市。</li>
+        <li><strong>FinOps:</strong> 如何精打细算，用最少的成本维持城市的高效运转（云成本优化）。</li>
+        <li><strong>AIOps:</strong> 如何利用AI和机器学习，让你的监控和应急响应系统变得更智能。</li>
+    </ul>
+    <p>保持好奇，持续学习，动手实践。你的代码，将成为数字世界坚实可靠的基石。现在，合上这本指南，开始建造你的第一座自动化、高可用的数字城市吧！</p>
+</div>
+
+</main>
+
+<footer>
+    <p style="font-size: 1.1em; font-weight: 500; color: #495057; margin-bottom: 10px;">
+        本系列课程由 <strong>许展玮 (Lupin)</strong> 倾力打造
+    </p>
+    <p style="font-size: 0.9em; color: #868e96; margin-top: 0;">
+        © 2025 在问 (zaiwen) 现代软件开发培训系列. All Rights Reserved.
+    </p>
+</footer>
+
+</body>
+</html>
